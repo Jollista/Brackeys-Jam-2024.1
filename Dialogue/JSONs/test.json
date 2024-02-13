@@ -1,0 +1,34 @@
+[
+	{
+		"Label":"START",
+		"Text":"\"Testing testing 123.\"",
+		"Choices":[
+			{"Text":"\"What?\""},
+			{"Text":"\"What.\"", "Next":"RUDE"},
+			{"Text":"[Look around.]", "Next":"AREA"}
+		]
+	},
+	
+	{
+		"Text":"Oh, don't mind me I'm just here to help you test some things."
+	},
+	{
+		"Text":"Namely, branching dialogue. I do hope it's working."
+	},
+	
+	{
+		"Label":"RUDE",
+		"Text":"Oh please don't take that tone with me, I'm only trying to help :(",
+		"Next":"END"
+	},
+	
+	{
+		"Label":"AREA",
+		"Text":"It's quite dark, and unfortunately you can't make out much of your surroundings.",
+		"Next":"START"
+	},
+	
+	{
+		"Label":"END",
+	}
+]
