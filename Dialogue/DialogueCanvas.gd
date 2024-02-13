@@ -14,7 +14,7 @@ const SLOW = 0.1
 
 # reference to components
 @onready var dialogue_box = $DialogueBox
-@onready var chat = $Text
+@onready var chat = $DialogueBox
 @onready var voice = $Voice
 @onready var sound = $Sound
 @onready var timer = $Delay
@@ -104,6 +104,12 @@ func next_line():
 	
 	# update text, works with bbcode
 	print("current line:" , dialogue[current_dialogue]["Text"])
+	var newtext = RichTextLabel.new()
+	newtext.bbcode_enabled = true
+	newtext.fit_content = true
+	newtext.custom_minimum_size = Vector2(200,200)
+	self.add_child(newtext)
+	chat = newtext
 	chat.text = dialogue[current_dialogue]["Text"]
 	
 	# change speed of text progression if needed
@@ -207,7 +213,6 @@ func display_choices(choices):
 	# for each, add a button as a child of text
 	# connect signals for each button to get_selection
 	choice_buttons = []
-	var button_offset = 200
 	for i in len(choices):
 		var button = Button.new()
 		button.set_text(choices[i]["Text"])
