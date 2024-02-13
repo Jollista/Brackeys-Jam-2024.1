@@ -13,9 +13,9 @@
 
 [node name="DialogueCanvas" parent="." instance=ExtResource("3_d0fyq")]
 
-[node name="Party" type="Node" parent="."]
+[node name="PC Party" type="Node" parent="."]
 
-[node name="Character" parent="Party" instance=ExtResource("4_vow6v")]
+[node name="Character" parent="PC Party" instance=ExtResource("4_vow6v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00175762, 0, 0)
 character_name = "Warrior"
 party = "PCs"
