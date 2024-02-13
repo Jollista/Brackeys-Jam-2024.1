@@ -31,17 +31,6 @@ var active = false
 var finished = true
 # skip line if blackout_screen()
 var skipping = false
-# reset sprites to default (HEAD_SMILE, BODY_RELAX) on dialogue end if reset_sprites
-# else, don't
-var reset_sprites = true
-# mute voice if muted
-var muted = false
-# used to mute music player on voice muted
-signal muted_voice
-
-signal pause_anim
-signal play_anim
-signal head_frame (frame : int)
 
 func _ready():
 	# set invisible by default
@@ -82,9 +71,6 @@ func start_dialogue(filepath:String=""):
 	active = true
 	set_visible(active)
 	
-	# pause game
-	#pause()
-	
 	# update text
 	next_line()
 
@@ -107,7 +93,7 @@ func next_line():
 	finished = false
 	
 	# if index is out of bounds, end dialogue
-	if current_dialogue >= len(dialogue):
+	if current_dialogue >= len(dialogue) or current_dialogue < 0:
 		end_dialogue()
 		return
 	# check index oob again just in case cause awaits make things a lil' wonky
@@ -127,17 +113,6 @@ func next_line():
 			_:
 				timer.set_wait_time(NORM)
 	
-	if dialogue[current_dialogue].has("Choices"):
-		# display choices, and wait for selection
-		# set current dialogue to index of selected choice's next
-		pass
-	elif dialogue[current_dialogue].has("Next"):
-		# get index of next (the line with the label tag matching dialogue[current_dialogue]["Next"])
-		pass
-	else:
-		# increment index
-		current_dialogue += 1
-	
 	# clear textbox
 	chat.visible_characters = 0
 	
@@ -154,10 +129,6 @@ func next_line():
 		#print("resetting timer speed")
 		timer.set_wait_time(text_speed)
 		
-		#print("voice check")
-		if not muted:# and not voice.playing:
-			voice.play() # play funny little sound hahaha make me laugh
-		
 		# delay between characters made visible
 		#print("text-speed")
 		timer.start(text_speed)
@@ -168,8 +139,19 @@ func next_line():
 	
 	# restore text_speed
 	timer.set_wait_time(text_speed)
-	# unmute voice
-	muted = false
+	
+	# determine next line
+	if dialogue[current_dialogue].has("Choices"):
+		# display choices, and wait for selection
+		# set current dialogue to index of selected choice's next
+		pass
+	elif dialogue[current_dialogue].has("Next"):
+		# get index of next (the line with the label tag matching dialogue[current_dialogue]["Next"])
+		current_dialogue = index_of_line(dialogue[current_dialogue]["Next"])
+		pass
+	else:
+		# increment index
+		current_dialogue += 1
 	
 	return
 
@@ -200,3 +182,11 @@ func unpause():
 func pause():
 	# pause game
 	get_tree().set_deferred("paused", true)
+
+# Find the index of a dialogue line where line["Label"] = label
+func index_of_line(label:String):
+	for i in len(dialogue):
+		if dialogue[i].has("Label") and dialogue[i]["Label"] == label:
+			return i
+	# if label does not exist
+	return -1
