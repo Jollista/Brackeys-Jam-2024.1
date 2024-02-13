@@ -33,7 +33,8 @@ var finished = true
 var skipping = false
 
 var selection
-var choice_buttons = []
+var choice_items = []
+var choices_list
 
 signal choice_selected
 
@@ -98,7 +99,7 @@ func next_line():
 	finished = false
 	
 	# if index is out of bounds, end dialogue
-	if current_dialogue >= len(dialogue) or current_dialogue < 0:
+	if current_dialogue >= len(dialogue) or current_dialogue < 0 or not dialogue[current_dialogue].has("Text"):
 		end_dialogue()
 		return
 	
@@ -156,10 +157,13 @@ func next_line():
 		var choice = selection
 		
 		print("current_dialogue: ", current_dialogue)
-		current_dialogue = index_of_line(choice["Next"])
-		print("Selected choice: \"", choice["Text"],"\"")
-		print("Next label: ", choice["Next"])
-		print("updated with label: ", current_dialogue)
+		if choice.has("Next"):
+			current_dialogue = index_of_line(choice["Next"])
+			print("Selected choice: \"", choice["Text"],"\"")
+			print("Next label: ", choice["Next"])
+			print("updated with label: ", current_dialogue)
+		else:
+			current_dialogue += 1
 		
 	elif dialogue[current_dialogue].has("Next"):
 		# get index of next (the line with the label tag matching dialogue[current_dialogue]["Next"])
@@ -212,20 +216,25 @@ func display_choices(choices):
 	# iterate through associative array of choices
 	# for each, add a button as a child of text
 	# connect signals for each button to get_selection
-	choice_buttons = []
-	for i in len(choices):
-		var button = Button.new()
-		button.set_text(choices[i]["Text"])
-		button.pressed.connect(_on_choice_selected)
-		chat.add_child(button)
-		choice_buttons.append([button,choices[i]])
+	
+	choices_list = ItemList.new()
+	choices_list.auto_height = true
+	choices_list.custom_minimum_size = Vector2(600, 0)
+	choices_list.item_selected.connect(_on_choice_selected)
+	chat.add_child(choices_list)
+	
+	choice_items = []
+	for choice in choices:
+		choices_list.add_item(choice["Text"])
+		choice_items.append(choice)
 
-func _on_choice_selected():
+func _on_choice_selected(index:int):
 	# loop through choice buttons
 	# if button is pressed, that's the one that triggered the signal
 	# set selection to associated choice, signal, and disable all buttons
-	for button in choice_buttons:
-		if button[0].is_pressed():
-			selection = button[1]
-			choice_selected.emit()
-		button[0].disabled = true
+	
+	selection = choice_items[index]
+	choice_selected.emit()
+	
+	for i in choices_list.item_count:
+		choices_list.set_item_disabled(i, true)

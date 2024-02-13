@@ -13,7 +13,8 @@
 		"Text":"Oh, don't mind me I'm just here to help you test some things."
 	},
 	{
-		"Text":"Namely, branching dialogue. I do hope it's working."
+		"Text":"Namely, branching dialogue. I do hope it's working.",
+		"Next":"END"
 	},
 	
 	{
