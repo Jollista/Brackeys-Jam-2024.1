@@ -103,6 +103,7 @@ func next_line():
 		return
 	
 	# update text, works with bbcode
+	print("current line:" , dialogue[current_dialogue]["Text"])
 	chat.text = dialogue[current_dialogue]["Text"]
 	
 	# change speed of text progression if needed
@@ -137,8 +138,6 @@ func next_line():
 		await timer.timeout # delay while loop until timeout
 		#print("finished waiting, next character\n")
 	
-	finished = true
-	
 	# restore text_speed
 	timer.set_wait_time(text_speed)
 	
@@ -149,7 +148,13 @@ func next_line():
 		display_choices(dialogue[current_dialogue]["Choices"])
 		await choice_selected
 		var choice = selection
+		
+		print("current_dialogue: ", current_dialogue)
 		current_dialogue = index_of_line(choice["Next"])
+		print("Selected choice: \"", choice["Text"],"\"")
+		print("Next label: ", choice["Next"])
+		print("updated with label: ", current_dialogue)
+		
 	elif dialogue[current_dialogue].has("Next"):
 		# get index of next (the line with the label tag matching dialogue[current_dialogue]["Next"])
 		current_dialogue = index_of_line(dialogue[current_dialogue]["Next"])
@@ -157,6 +162,7 @@ func next_line():
 		# increment index
 		current_dialogue += 1
 	
+	finished = true
 	return
 
 # end current dialogue
@@ -201,6 +207,7 @@ func display_choices(choices):
 	# for each, add a button as a child of text
 	# connect signals for each button to get_selection
 	choice_buttons = []
+	var button_offset = 200
 	for i in len(choices):
 		var button = Button.new()
 		button.set_text(choices[i]["Text"])
