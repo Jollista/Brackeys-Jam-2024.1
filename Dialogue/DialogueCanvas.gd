@@ -32,6 +32,11 @@ var finished = true
 # skip line if blackout_screen()
 var skipping = false
 
+var selection
+var choice_buttons = []
+
+signal choice_selected
+
 func _ready():
 	# set invisible by default
 	print("DialogueCanvas ready")
@@ -96,9 +101,6 @@ func next_line():
 	if current_dialogue >= len(dialogue) or current_dialogue < 0:
 		end_dialogue()
 		return
-	# check index oob again just in case cause awaits make things a lil' wonky
-	if (current_dialogue >= len(dialogue)):
-		return
 	
 	# update text, works with bbcode
 	chat.text = dialogue[current_dialogue]["Text"]
@@ -144,11 +146,13 @@ func next_line():
 	if dialogue[current_dialogue].has("Choices"):
 		# display choices, and wait for selection
 		# set current dialogue to index of selected choice's next
-		pass
+		display_choices(dialogue[current_dialogue]["Choices"])
+		await choice_selected
+		var choice = selection
+		current_dialogue = index_of_line(choice["Next"])
 	elif dialogue[current_dialogue].has("Next"):
 		# get index of next (the line with the label tag matching dialogue[current_dialogue]["Next"])
 		current_dialogue = index_of_line(dialogue[current_dialogue]["Next"])
-		pass
 	else:
 		# increment index
 		current_dialogue += 1
@@ -190,3 +194,26 @@ func index_of_line(label:String):
 			return i
 	# if label does not exist
 	return -1
+
+# display selectable choices
+func display_choices(choices):
+	# iterate through associative array of choices
+	# for each, add a button as a child of text
+	# connect signals for each button to get_selection
+	choice_buttons = []
+	for i in len(choices):
+		var button = Button.new()
+		button.set_text(choices[i]["Text"])
+		button.pressed.connect(_on_choice_selected)
+		chat.add_child(button)
+		choice_buttons.append([button,choices[i]])
+
+func _on_choice_selected():
+	# loop through choice buttons
+	# if button is pressed, that's the one that triggered the signal
+	# set selection to associated choice, signal, and disable all buttons
+	for button in choice_buttons:
+		if button[0].is_pressed():
+			selection = button[1]
+			choice_selected.emit()
+		button[0].disabled = true

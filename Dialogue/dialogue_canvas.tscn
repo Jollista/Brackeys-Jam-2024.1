@@ -1,11 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://d25uh34udprgi"]
+[gd_scene load_steps=3 format=3 uid="uid://d25uh34udprgi"]
 
 [ext_resource type="Script" path="res://Dialogue/DialogueCanvas.gd" id="1_4gelv"]
+[ext_resource type="Texture2D" uid="uid://bwe4pwkptpkmu" path="res://icon.svg" id="2_fq4g6"]
 
 [node name="DialogueCanvas" type="CanvasLayer"]
 script = ExtResource("1_4gelv")
 
 [node name="DialogueBox" type="Sprite2D" parent="."]
+modulate = Color(100, 100, 100, 1)
+texture = ExtResource("2_fq4g6")
 
 [node name="Text" type="RichTextLabel" parent="."]
 offset_right = 40.0
