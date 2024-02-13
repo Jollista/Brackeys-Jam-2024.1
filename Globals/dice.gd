@@ -21,10 +21,6 @@ func roll(x:int, d:int):
 		rolls.append(randi_range(1,d))
 	return rolls
 
-# roll a die with sides sides
-func d(sides:int):
-	return randi_range(1,sides)
-
 # simulate a check with a skill of level rank
 func skill_check(rank:int):
 	# roll rank + karma d6s
@@ -69,11 +65,16 @@ func update_karma(last_result:int, character_name=""):
 	queue.push_front(last_result)
 	if len(queue) > queue_len:
 		queue.pop_back()
+	
+	print("updated karma: ", queue)
 
 # trim the lowest roll from an array of rolls until len(rolls) == max_rolls
 func trim_rolls(rolls:Array, max_rolls:int):
+	print("pretrimmed rolls: ", rolls)
 	while len(rolls) > max_rolls:
 		rolls.erase(rolls.min())
+	
+	return rolls
 
 # determine the result of a check given an array of rolls
 func interpret_result(rolls:Array, mixed_threshold:int, success_threshold:int):
