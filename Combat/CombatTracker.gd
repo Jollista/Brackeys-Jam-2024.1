@@ -1,7 +1,17 @@
 extends CanvasLayer
 
-var combatants = []
+var combatants = {
+	"Character":
+		{
+			"Name":"Warrior",
+			"Affiliation":"Party",
+			"Acted this round?":false,
+			"Acted this baton pass?": false
+		}
+}
 var initiative = 0
+
+signal round_ended
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
