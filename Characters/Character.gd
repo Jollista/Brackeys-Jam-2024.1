@@ -15,15 +15,21 @@ extends CharacterBody3D
 @export var max_movement:float
 @onready var remaining_movement = max_movement
 
+# tracks which party the character belongs to
+@export var party:String
+
 var id:float
 
 signal baton_pass(character:Character)
 signal end_turn(character:Character)
 
 # onready, connect signals from combat_tracker to self, disable process by default
+# also add self to relevant groups based on party affiliation
 func _ready():
 	set_process(false) # process should only be enabled when it is the character's turn
 	# combat_tracker.your_turn.connect(_on_turn_start)
+	add_to_group("Combatants")
+	add_to_group(party)
 	pass
 
 func _on_turn_start(character_id:int):

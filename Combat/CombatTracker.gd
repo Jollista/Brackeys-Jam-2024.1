@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+# this is an example of the format, this is not actually used
+# combatants are added dynamically at the start of each combat
 var combatants = [
 	{
 		"Name":"Warrior",
@@ -15,6 +17,8 @@ signal round_ended
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var character_nodes = []
+	
 	# add all participating characters to combatants
 	# set each character's id to their index in combatants
 	pass
