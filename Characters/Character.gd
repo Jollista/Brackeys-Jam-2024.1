@@ -18,6 +18,9 @@ extends CharacterBody3D
 # tracks which party the character belongs to
 @export var party:String
 
+@onready var combat_tracker = $"../../CombatTracker"
+
+# track own id, managed by combat_tracker
 var id:float
 
 signal baton_pass(character:Character)
@@ -27,10 +30,11 @@ signal end_turn(character:Character)
 # also add self to relevant groups based on party affiliation
 func _ready():
 	set_process(false) # process should only be enabled when it is the character's turn
-	# combat_tracker.your_turn.connect(_on_turn_start)
+	
+	combat_tracker.your_turn.connect(_on_turn_start)
+	
 	add_to_group("Combatants")
 	add_to_group(party)
-	pass
 
 func _on_turn_start(character_id:int):
 	# ignore if not self
@@ -43,7 +47,9 @@ func _on_turn_start(character_id:int):
 # take turn
 # player control and enemy ai goes here depending on implementation
 func take_turn():
-	pass
+	# take turn
+	end_turn.emit()
+	return
 
 # Take damage
 func take_damage(damage:int):
