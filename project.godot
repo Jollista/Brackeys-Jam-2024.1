@@ -16,7 +16,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Dice="*res://Globals/dice.gd"
+Dice="*res://Globals/Dice.gd"
 
 [input]
 
