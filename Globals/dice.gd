@@ -25,9 +25,13 @@ func roll(x:int, d:int):
 func skill_check(rank:int):
 	# roll rank + karma d6s
 	var num_dice = rank + get_check_karma()
+	print("num_dice ", num_dice)
 	var rolls = roll(num_dice, 6)
+	print("rolls ", rolls)
 	rolls = trim_rolls(rolls, rank)
+	print("rolls ", rolls)
 	var result = interpret_result(rolls, MIXED_SUCCESS_THRESHOLD, SUCCESS_THRESHOLD)
+	print("result ", result)
 	
 	# check die rolls
 	return {"Result":result, "Rolls":rolls}

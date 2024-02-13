@@ -4,4 +4,4 @@ extends Node2D
 func _process(_delta):
 	if Input.is_action_just_pressed("interact"):
 		print("rolling skill at rank 2")
-		Dice.skill_check(2)
+		print("result is: ", Dice.skill_check(2))
