@@ -12,22 +12,16 @@ position = Vector2(577, 321)
 scale = Vector2(8.98438, 5.01563)
 texture = ExtResource("2_fq4g6")
 
-[node name="HFlowContainer" type="HFlowContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
 
-[node name="Text" type="RichTextLabel" parent="HFlowContainer"]
-custom_minimum_size = Vector2(200, 100)
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-bbcode_enabled = true
-text = "Text goes here"
-fit_content = true
+size_flags_horizontal = 6
 
 [node name="Voice" type="AudioStreamPlayer" parent="."]
 

@@ -14,7 +14,7 @@ const SLOW = 0.1
 
 # reference to components
 @onready var dialogue_box = $DialogueBox
-@onready var text_container = $HFlowContainer
+@onready var text_container = $ScrollContainer/GridContainer
 @onready var voice = $Voice
 @onready var sound = $Sound
 @onready var timer = $Delay
@@ -109,7 +109,7 @@ func next_line():
 	var newtext = RichTextLabel.new()
 	newtext.bbcode_enabled = true
 	newtext.fit_content = true
-	newtext.custom_minimum_size = Vector2(200,200)
+	newtext.custom_minimum_size = Vector2(200,50)
 	text_container.add_child(newtext)
 	chat = newtext
 	chat.text = dialogue[current_dialogue]["Text"]
