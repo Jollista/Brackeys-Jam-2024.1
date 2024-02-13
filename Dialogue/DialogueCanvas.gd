@@ -14,10 +14,11 @@ const SLOW = 0.1
 
 # reference to components
 @onready var dialogue_box = $DialogueBox
-@onready var chat = $DialogueBox
+@onready var text_container = $HFlowContainer
 @onready var voice = $Voice
 @onready var sound = $Sound
 @onready var timer = $Delay
+var chat
 
 signal dialogue_ended
 
@@ -109,7 +110,7 @@ func next_line():
 	newtext.bbcode_enabled = true
 	newtext.fit_content = true
 	newtext.custom_minimum_size = Vector2(200,200)
-	self.add_child(newtext)
+	text_container.add_child(newtext)
 	chat = newtext
 	chat.text = dialogue[current_dialogue]["Text"]
 	
@@ -217,7 +218,7 @@ func display_choices(choices):
 	choices_list.auto_height = true
 	choices_list.custom_minimum_size = Vector2(600, 0)
 	choices_list.item_selected.connect(_on_choice_selected)
-	chat.add_child(choices_list)
+	text_container.add_child(choices_list)
 	
 	choice_items = []
 	for choice in choices:
