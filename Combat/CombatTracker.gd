@@ -1,12 +1,7 @@
 extends CanvasLayer
 
-# Resource points inspired by inventory system in CBR+PNK Augmented
-@export var resource_point_max = 15
-@onready var resource_points = resource_point_max
-
-# Stress mechanic stolen from Forged in the Dark
-@export var stress_max = 10
-@onready var stress = stress_max
+var combatants = []
+var initiative = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
