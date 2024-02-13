@@ -213,10 +213,6 @@ func index_of_line(label:String):
 
 # display selectable choices
 func display_choices(choices):
-	# iterate through associative array of choices
-	# for each, add a button as a child of text
-	# connect signals for each button to get_selection
-	
 	choices_list = ItemList.new()
 	choices_list.auto_height = true
 	choices_list.custom_minimum_size = Vector2(600, 0)
@@ -228,11 +224,8 @@ func display_choices(choices):
 		choices_list.add_item(choice["Text"])
 		choice_items.append(choice)
 
+# on choice selected, update variables and disable all current dialogue options
 func _on_choice_selected(index:int):
-	# loop through choice buttons
-	# if button is pressed, that's the one that triggered the signal
-	# set selection to associated choice, signal, and disable all buttons
-	
 	selection = choice_items[index]
 	choice_selected.emit()
 	
