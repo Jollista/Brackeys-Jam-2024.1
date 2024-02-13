@@ -127,36 +127,16 @@ func next_line():
 			_:
 				timer.set_wait_time(NORM)
 	
-	# get voice
-	# if mute, short circuit
-	if dialogue[current_dialogue].has("Voice"):
-		match dialogue[current_dialogue]["Voice"]:
-			"mute":
-				muted = true
-			_:
-				var voice_sound = "res://scenes/level/undyne/assets/sound/effects/" + dialogue[current_dialogue]["Voice"]
-				voice.set_stream(load(voice_sound)) # set as voice's stream
-	
-	# play additional sound effect
-	if dialogue[current_dialogue].has("Sound"):
-			var sound_effect = "res://scenes/level/undyne/assets/sound/effects/" + dialogue[current_dialogue]["Sound"]
-			sound.set_stream(load(sound_effect)) # set as sound's stream
-			sound.play()
-	
-	# pause or unpause animation
-	if dialogue[current_dialogue].has("Anim"):
-		match dialogue[current_dialogue]["Anim"]:
-			"pause":
-				pause_anim.emit()
-			"play":
-				play_anim.emit()
-	
-	# change head sprite
-	if dialogue[current_dialogue].has("Head"):
-		head_frame.emit(int(dialogue[current_dialogue]["Head"]))
-	
-	# increment index
-	current_dialogue += 1
+	if dialogue[current_dialogue].has("Choices"):
+		# display choices, and wait for selection
+		# set current dialogue to index of selected choice's next
+		pass
+	elif dialogue[current_dialogue].has("Next"):
+		# get index of next (the line with the label tag matching dialogue[current_dialogue]["Next"])
+		pass
+	else:
+		# increment index
+		current_dialogue += 1
 	
 	# clear textbox
 	chat.visible_characters = 0
