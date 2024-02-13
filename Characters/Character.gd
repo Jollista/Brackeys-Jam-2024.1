@@ -12,10 +12,10 @@ extends CharacterBody3D
 @export var armor:int
 
 # track how much the character can move on their turns
-@export var max_movement:int
+@export var max_movement:float
 @onready var remaining_movement = max_movement
 
-var id:int
+var id:float
 
 signal baton_pass(character:Character)
 signal end_turn(character:Character)
@@ -32,9 +32,10 @@ func _on_turn_start(character_id:int):
 		return
 	
 	# else, take turn
-	
+	take_turn()
 
-# 
+# take turn
+# player control and enemy ai goes here depending on implementation
 func take_turn():
 	pass
 
