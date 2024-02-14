@@ -31,7 +31,7 @@ var selected_character
 signal character_selected
 
 signal your_turn(character_id:int)
-signal round_ended
+signal sequence_ended(sequence_type:String)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,7 +42,7 @@ func _ready():
 	# connect dialogue controlled combat signal
 	dialogue_canvas.combat_start.connect(_start_combat)
 	item_list.item_selected.connect(_on_player_character_selected)
-	self.round_ended.connect(_on_round_ended)
+	self.sequence_ended.connect(_on_sequence_ended)
 
 # Initialize array of combatants
 func initialize_combatants():
@@ -110,17 +110,20 @@ func _start_combat(starting_party:String):
 					# await combatant["Node"].turn_ended # wait for their turn to end before progressing
 		
 		# round over, while loop triggers
-		round_ended.emit()
+		sequence_ended.emit("Acted this round?")
 
 # should return null if all of that party's members have acted
-func choose_combatant(party_name:String):
+func choose_combatant(party_name:String, baton_pass=false):
+	# determine if tracking baton pass or round
+	var acted = "Acted this baton pass?" if baton_pass else "Acted this round?"
+	
 	if party_name == "PCs":
 		# prompt player to pick which character they want to go
 		# provide list of characters who haven't acted yet
 		# selection determines who goes
 		item_list.clear()
 		for character in combatants["PCs"]:
-			if not character["Acted this round?"]:
+			if not character[acted]:
 				item_list.add_item(character["Name"],character["Sprite"])
 			
 		character_select.visible = true
@@ -129,13 +132,13 @@ func choose_combatant(party_name:String):
 		character_select.visible = false
 		for i in len(combatants["PCs"]):
 			if combatants["PCs"][i]["Name"] == selected_character["Name"]:
-				combatants["PCs"][i]["Acted this round?"] = true
+				combatants["PCs"][i][acted] = true
 		return selected_character
 	
 	else: # arbitrarily pick NPC
 		for character in combatants[party_name]:
-			if not character["Acted this round?"]:
-				character["Acted this round?"] = true
+			if not character[acted]:
+				character[acted] = true
 				return character
 	
 	return null # if all characters in party have acted
@@ -158,7 +161,7 @@ func _on_player_character_selected(index:int):
 			return
 
 # on round ended, reset everyone's acted this round
-func _on_round_ended():
+func _on_sequence_ended(acted:String):
 	for party in combatants:
 		for i in len(combatants[party]):
-			combatants[party][i]["Acted this round?"] = false
+			combatants[party][i][acted] = false
