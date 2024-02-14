@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 @onready var dialogue_canvas = $"../DialogueCanvas"
+@onready var character_select = $CharacterSelect
+@onready var item_list = $CharacterSelect/ItemList
 
 # this is an example of the format, this is not actually used
 # combatants are added dynamically at the start of each combat
@@ -39,7 +41,7 @@ func _ready():
 	
 	# connect dialogue controlled combat signal
 	dialogue_canvas.combat_start.connect(_start_combat)
-	$CharacterSelect/ItemList.item_selected.connect(_on_player_character_selected)
+	item_list.item_selected.connect(_on_player_character_selected)
 	self.round_ended.connect(_on_round_ended)
 
 # Initialize array of combatants
@@ -116,15 +118,15 @@ func choose_combatant(party_name:String):
 		# prompt player to pick which character they want to go
 		# provide list of characters who haven't acted yet
 		# selection determines who goes
-		$CharacterSelect/ItemList.clear()
+		item_list.clear()
 		for character in combatants["PCs"]:
 			if not character["Acted this round?"]:
-				$CharacterSelect/ItemList.add_item(character["Name"],character["Sprite"],not character["Acted this round?"])
+				item_list.add_item(character["Name"],character["Sprite"],not character["Acted this round?"])
 			
-		$CharacterSelect.visible = true
+		character_select.visible = true
 		print("awaiting character_selected")
 		await character_selected
-		$CharacterSelect.visible = false
+		character_select.visible = false
 		for i in len(combatants["PCs"]):
 			if combatants["PCs"][i]["Name"] == selected_character["Name"]:
 				combatants["PCs"][i]["Acted this round?"] = true
