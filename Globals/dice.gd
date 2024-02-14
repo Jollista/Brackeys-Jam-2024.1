@@ -1,8 +1,8 @@
 extends Node
 
 # vars for check results
-const SUCCESS_THRESHOLD = 5 # minimum value for a check to be considered successful
-const MIXED_SUCCESS_THRESHOLD = 3 # minimum value for a check to be considered a mixed success
+const SUCCESS_THRESHOLD = 6 # minimum value for a check to be considered successful
+const MIXED_SUCCESS_THRESHOLD = 4 # minimum value for a check to be considered a mixed success
 enum {SUCCESS, MIXED_SUCCESS, FAILURE}
 
 # tracks the last few ability checks for karmic rolls
@@ -32,6 +32,7 @@ func skill_check(rank:int):
 	print("rolls ", rolls)
 	var result = interpret_result(rolls, MIXED_SUCCESS_THRESHOLD, SUCCESS_THRESHOLD)
 	print("result ", result)
+	update_karma(result)
 	
 	# check die rolls
 	return {"Result":result, "Rolls":rolls}
@@ -53,7 +54,7 @@ func update_karma(last_result:int, character_name=""):
 	var queue_len
 	
 	# if no character_name given, update karma for check_queue
-	if character_name != "":
+	if character_name == "":
 		queue = check_queue
 		queue_len = check_queue_length
 	
