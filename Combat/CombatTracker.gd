@@ -107,4 +107,7 @@ func choose_combatant(party_name:String):
 
 # returns the length of the largest party in combatants
 func get_biggest_party_size():
-	pass
+	var size = 0
+	for party in combatants:
+		size = max(len(party), size)
+	return size
