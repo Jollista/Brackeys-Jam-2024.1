@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqtg7tokjut7r"]
+
+[ext_resource type="Script" path="res://Combat/Test/CombatTrackerTest.gd" id="1_ejowb"]
+[ext_resource type="PackedScene" uid="uid://d25uh34udprgi" path="res://Dialogue/dialogue_canvas.tscn" id="2_mmne3"]
+[ext_resource type="PackedScene" uid="uid://c0vtil742qc3x" path="res://Combat/combat_tracker.tscn" id="3_lreq3"]
+[ext_resource type="PackedScene" uid="uid://kffnqt5olmid" path="res://Characters/character.tscn" id="4_ceicc"]
+[ext_resource type="Texture2D" uid="uid://dekwhecq7012i" path="res://Assets/Images/warrior.png" id="5_dck20"]
+[ext_resource type="Texture2D" uid="uid://dqwfsr6n7ik2l" path="res://Assets/Images/thief.png" id="6_crikb"]
+[ext_resource type="Texture2D" uid="uid://ddkt08nrgqc0t" path="res://Assets/Images/mage.png" id="7_22sb4"]
+
+[node name="Node2D" type="Node3D"]
+script = ExtResource("1_ejowb")
+
+[node name="DialogueCanvas" parent="." instance=ExtResource("2_mmne3")]
+
+[node name="CombatTracker" parent="." instance=ExtResource("3_lreq3")]
+
+[node name="Party" type="Node" parent="."]
+
+[node name="Warrior" parent="Party" instance=ExtResource("4_ceicc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.455474, 0, 0.584465)
+character_name = "Warrior"
+party = "PCs"
+battle_sprite = ExtResource("5_dck20")
+
+[node name="Thief" parent="Party" instance=ExtResource("4_ceicc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.455474, 0, 0.584465)
+character_name = "Thief"
+party = "PCs"
+battle_sprite = ExtResource("6_crikb")
+
+[node name="Mage" parent="Party" instance=ExtResource("4_ceicc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.455474, 0, 0.584465)
+character_name = "Mage"
+party = "PCs"
+battle_sprite = ExtResource("7_22sb4")
+
+[node name="Goblin Party" type="Node" parent="."]
+
+[node name="Character" parent="Goblin Party" instance=ExtResource("4_ceicc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.27857, -1.19209e-07, -0.408533)
+character_name = "Goblin"
+party = "Monsters"

@@ -25,6 +25,9 @@ var combatants = {
 		}
 	]}
 
+var selected_character
+signal character_selected
+
 signal your_turn(character_id:int)
 signal round_ended
 
@@ -36,6 +39,7 @@ func _ready():
 	
 	# connect dialogue controlled combat signal
 	dialogue_canvas.combat_start.connect(_start_combat)
+	$CharacterSelect/ItemList.item_selected.connect(_on_player_character_selected)
 
 # Initialize array of combatants
 func initialize_combatants():
@@ -45,9 +49,17 @@ func initialize_combatants():
 	# add all participating characters to combatants
 	combatants = {}
 	for combatant in character_nodes:
+		print("party: ", combatant.party)
+		
+		# initialize party
+		if not combatants.has(combatant.party):
+			combatants[combatant.party] = []
+		
+		# add combatant to party
 		combatants[combatant.party].append({
 				"Name": combatant.character_name, 
 				"Node": combatant,
+				"Sprite": combatant.battle_sprite,
 				"Acted this round?": false, 
 				"Acted this baton pass?": false
 			})
@@ -68,6 +80,8 @@ func get_characters():
 
 # start combat loop
 func _start_combat(starting_party:String):
+	print("_start_combat called")
+	
 	# determine the order the parties act in
 	var party_order = combatants.keys() # get all parties in an array
 	party_order.erase(starting_party) # erase starting_party
@@ -81,7 +95,7 @@ func _start_combat(starting_party:String):
 			# every party gets 1 turn per loop, so with all loops all characters get to act
 			for party in party_order:
 				# each party designates a combatant to act
-				var combatant = choose_combatant(party)
+				var combatant = await choose_combatant(party)
 				if combatant != null: # null if no combatant in party can act
 					combatant["Node"].take_turn() # combatant takes turn
 					await combatant["Node"].turn_ended # wait for their turn to end before progressing
@@ -95,7 +109,13 @@ func choose_combatant(party_name:String):
 		# prompt player to pick which character they want to go
 		# provide list of characters who haven't acted yet
 		# selection determines who goes
-		return
+		$CharacterSelect/ItemList.clear()
+		for character in combatants["PCs"]:
+			$CharacterSelect/ItemList.add_item(character["Name"],character["Sprite"],!character["Acted this round?"])
+		$CharacterSelect.visible = true
+		await character_selected
+		$CharacterSelect.visible = false
+		return selected_character
 	
 	else: # arbitrarily pick NPC
 		for character in combatants[party_name]:
@@ -111,3 +131,11 @@ func get_biggest_party_size():
 	for party in combatants:
 		size = max(len(party), size)
 	return size
+
+func _on_player_character_selected(index:int):
+	var char_name = $CharacterSelect/ItemList.get_item_text(index)
+	for character in combatants["PCs"]:
+		if character["Name"] == char_name:
+			selected_character = character
+			character_selected.emit()
+			return

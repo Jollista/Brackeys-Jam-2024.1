@@ -18,6 +18,8 @@ extends CharacterBody3D
 # tracks which party the character belongs to
 @export var party:String
 
+@export var battle_sprite:Texture2D
+
 @onready var combat_tracker = $"../../CombatTracker"
 
 # track own id, managed by combat_tracker
