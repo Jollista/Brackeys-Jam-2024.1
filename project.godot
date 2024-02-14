@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Dice="*res://Globals/Dice.gd"
+ResourceTracker="*res://Globals/ResourceTracker.gd"
 
 [input]
 
