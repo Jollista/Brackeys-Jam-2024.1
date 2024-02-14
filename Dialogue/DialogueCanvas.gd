@@ -38,7 +38,7 @@ var choice_items = []
 var choices_list
 
 signal choice_selected
-signal combat_start
+signal combat_start(starting_party:String)
 
 func _ready():
 	# set invisible by default

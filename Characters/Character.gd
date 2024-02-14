@@ -24,7 +24,7 @@ extends CharacterBody3D
 var id:float
 
 signal baton_pass(character:Character)
-signal end_turn(character:Character)
+signal turn_ended
 
 # onready, connect signals from combat_tracker to self, disable process by default
 # also add self to relevant groups based on party affiliation
@@ -48,7 +48,7 @@ func _on_turn_start(character_id:int):
 # player control and enemy ai goes here depending on implementation
 func take_turn():
 	# take turn
-	end_turn.emit()
+	turn_ended.emit()
 	return
 
 # Take damage
