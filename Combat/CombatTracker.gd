@@ -31,6 +31,8 @@ var combatants = {
 var selected_character
 signal character_selected
 
+var baton_passing:Character
+
 signal your_turn(character_id:int)
 signal sequence_ended(sequence_type:String)
 
@@ -44,6 +46,8 @@ func _ready():
 	dialogue_canvas.combat_start.connect(_start_combat)
 	item_list.item_selected.connect(_on_player_character_selected)
 	self.sequence_ended.connect(_on_sequence_ended)
+	
+	# connect all baton pass signals to _on_baton_pass
 	for party in combatants:
 		for i in len(combatants[party]):
 			combatants[party][i]["Node"].baton_pass.connect(_on_baton_pass)
