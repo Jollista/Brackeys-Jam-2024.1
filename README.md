@@ -1,7 +1,9 @@
 # Delve
 Hey! Didn't expect anyone'd ever read this, but hi! This is the source code for a game
 I made for the [Brackeys Gam Jam](https://itch.io/jam/brackeys-11) with the theme
+
 > WHAT'S BEHIND THE DOOR?
+
 I didn't have a lot of immediate ideas, but the one I settled on was like a dungeon
 crawl kinda thing. Kicking down doors, killing monsters, finding loot. Munchkin kinda
 stuff. So what I did was I quickly whipped together what is essentially like, a Blades
