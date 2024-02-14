@@ -40,6 +40,7 @@ func _ready():
 	# connect dialogue controlled combat signal
 	dialogue_canvas.combat_start.connect(_start_combat)
 	$CharacterSelect/ItemList.item_selected.connect(_on_player_character_selected)
+	self.round_ended.connect(_on_round_ended)
 
 # Initialize array of combatants
 func initialize_combatants():
@@ -153,3 +154,9 @@ func _on_player_character_selected(index:int):
 			print("emitting character_selected")
 			character_selected.emit()
 			return
+
+# on round ended, reset everyone's acted this round
+func _on_round_ended():
+	for party in combatants:
+		for i in len(combatants[party]):
+			combatants[party][i]["Acted this round?"] = false
