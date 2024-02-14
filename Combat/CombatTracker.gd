@@ -121,7 +121,7 @@ func choose_combatant(party_name:String):
 		item_list.clear()
 		for character in combatants["PCs"]:
 			if not character["Acted this round?"]:
-				item_list.add_item(character["Name"],character["Sprite"],not character["Acted this round?"])
+				item_list.add_item(character["Name"],character["Sprite"])
 			
 		character_select.visible = true
 		print("awaiting character_selected")
