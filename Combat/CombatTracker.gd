@@ -25,16 +25,17 @@ var combatants = {
 		}
 	]}
 
-var initiative = 0
-
 signal your_turn(character_id:int)
 signal round_ended
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	# initialize combatants
 	initialize_combatants()
 	print("COMBATANTS!: ", combatants)
+	
+	# connect dialogue controlled combat signal
+	dialogue_canvas.combat_start.connect(_start_combat)
 
 # Initialize array of combatants
 func initialize_combatants():
@@ -69,5 +70,6 @@ func get_characters():
 	
 	return characters
 
-func _on_combat_start():
+
+func _start_combat():
 	pass
