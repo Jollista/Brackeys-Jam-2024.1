@@ -27,6 +27,7 @@ var combatants = {
 		}
 	]}
 
+# track selected character when player is prompted
 var selected_character
 signal character_selected
 
@@ -43,6 +44,9 @@ func _ready():
 	dialogue_canvas.combat_start.connect(_start_combat)
 	item_list.item_selected.connect(_on_player_character_selected)
 	self.sequence_ended.connect(_on_sequence_ended)
+	for party in combatants:
+		for i in len(combatants[party]):
+			combatants[party][i]["Node"].baton_pass.connect(_on_baton_pass)
 
 # Initialize array of combatants
 func initialize_combatants():
@@ -94,20 +98,13 @@ func _start_combat(starting_party:String):
 	while combatants.has("Monsters") and len(combatants["Monsters"]) > 0:
 		# loop through combatants
 		var round = get_biggest_party_size()
-		print("round = ", round)
 		for turn in round:
-			print("turn = ", round)
 			# every party gets 1 turn per loop, so with all loops all characters get to act
 			for party in party_order:
-				print("party = ", party)
 				# each party designates a combatant to act
 				var combatant = await choose_combatant(party)
-				print("Combatant chosen: ", combatant)
 				if combatant != null: # null if no combatant in party can act
-					print("take turn")
 					await combatant["Node"].take_turn() # combatant takes turn
-					print("awaiting")
-					# await combatant["Node"].turn_ended # wait for their turn to end before progressing
 		
 		# round over, while loop triggers
 		sequence_ended.emit("Acted this round?")
@@ -165,3 +162,25 @@ func _on_sequence_ended(acted:String):
 	for party in combatants:
 		for i in len(combatants[party]):
 			combatants[party][i][acted] = false
+
+# on baton pass initiated, wait until end of turn and then initiate baton pass sequence
+func _on_baton_pass(character:Character):
+	# set acted this baton pass to true
+	set_combatant_attribute("Acted this baton pass?", true)
+	
+	# for every other combatant in PCs, prompt player for next and take their turn
+	for i in len(combatants["PCs"])-1:
+		var combatant = await choose_combatant("PCs", true)
+		if combatant != null: # null if no combatant in party can act
+			await combatant.get("Node").take_turn() # combatant takes turn
+	
+	# all out attack?
+	# end baton pass
+	sequence_ended.emit("Acted this baton pass?")
+
+# set attribute of a combatant
+func set_combatant_attribute(attribute, value):
+	for party in combatants:
+		for i in len(combatants[party]):
+			if combatants[party][i].has(attribute):
+				combatants[party][i][attribute] = value

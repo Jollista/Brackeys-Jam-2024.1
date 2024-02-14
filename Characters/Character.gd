@@ -25,6 +25,9 @@ extends CharacterBody3D
 # track own id, managed by combat_tracker
 var id:float
 
+# true if in baton pass sequence, used to prevent single character baton pass initiation while already in a baton pass
+var baton_passing = false
+
 signal baton_pass(character:Character)
 signal turn_ended
 
