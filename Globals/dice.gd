@@ -24,7 +24,7 @@ func roll(x:int, d:int):
 # simulate a check with a skill of level rank
 func skill_check(rank:int):
 	# roll rank + karma d6s
-	var num_dice = rank + get_check_karma()
+	var num_dice = rank + get_karma()
 	var rolls = roll(num_dice, 6)
 	rolls = trim_rolls(rolls, rank)
 	var result = interpret_result(rolls, MIXED_SUCCESS_THRESHOLD, SUCCESS_THRESHOLD)
@@ -34,11 +34,21 @@ func skill_check(rank:int):
 	return {"Result":result, "Rolls":rolls}
 
 # returns the number of failed rolls in the queue
-func get_check_karma():
+func get_karma(character_name=""):
 	# count failures in check_queue
 	var failures = 0
 	var mixed = 0
-	for i in check_queue:
+	var queue
+	
+	# determine queue
+	if character_name == "":
+		queue = check_queue
+	elif character_queues.has(character_name):
+		queue = character_queues[character_name]
+	else: # character_queue not initialized, ignore
+		return 0
+	
+	for i in queue:
 		if i == FAILURE:
 			failures += 1
 		elif i == MIXED_SUCCESS:
@@ -102,25 +112,10 @@ func character_roll(character_name:String, x:int, d:int):
 	
 	# for each roll
 	for i in x:
-		var dice = 1 + get_character_karma(character_name) # dice rolled is the sum of 1 (base) + karma
+		var dice = 1 + get_karma(character_name) # dice rolled is the sum of 1 (base) + karma
 		var roll = trim_rolls(roll(dice, d), 1) # get roll with karma applied
 		var result = interpret_result(roll, avg/2, avg) # interpret result
 		rolls.append(roll[0]) # append roll to rolls
 		update_karma(result, character_name) # update karma
 	
 	return rolls
-
-# get karma for a given character's karma queue
-func get_character_karma(character_name:String):
-	# catch uninitialized character
-	if not character_queues.has(character_name):
-		return
-	
-	# count failures in character_queue
-	var failures = 0
-	for i in character_queues[character_name]:
-		if i == FAILURE:
-			failures += 1
-	
-	# return karma
-	return failures
