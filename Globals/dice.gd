@@ -25,13 +25,9 @@ func roll(x:int, d:int):
 func skill_check(rank:int):
 	# roll rank + karma d6s
 	var num_dice = rank + get_check_karma()
-	print("num_dice ", num_dice)
 	var rolls = roll(num_dice, 6)
-	print("rolls ", rolls)
 	rolls = trim_rolls(rolls, rank)
-	print("rolls ", rolls)
 	var result = interpret_result(rolls, MIXED_SUCCESS_THRESHOLD, SUCCESS_THRESHOLD)
-	print("result ", result)
 	update_karma(result)
 	
 	# check die rolls
@@ -70,12 +66,9 @@ func update_karma(last_result:int, character_name=""):
 	queue.push_front(last_result)
 	if len(queue) > queue_len:
 		queue.pop_back()
-	
-	print("updated karma: ", queue)
 
 # trim the lowest roll from an array of rolls until len(rolls) == max_rolls
 func trim_rolls(rolls:Array, max_rolls:int):
-	print("pretrimmed rolls: ", rolls)
 	while len(rolls) > max_rolls:
 		rolls.erase(rolls.min())
 	
