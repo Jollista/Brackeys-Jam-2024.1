@@ -91,14 +91,20 @@ func _start_combat(starting_party:String):
 	while combatants.has("Monsters") and len(combatants["Monsters"]) > 0:
 		# loop through combatants
 		var round = get_biggest_party_size()
+		print("round = ", round)
 		for turn in round:
+			print("turn = ", round)
 			# every party gets 1 turn per loop, so with all loops all characters get to act
 			for party in party_order:
+				print("party = ", party)
 				# each party designates a combatant to act
 				var combatant = await choose_combatant(party)
+				print("Combatant chosen: ", combatant)
 				if combatant != null: # null if no combatant in party can act
-					combatant["Node"].take_turn() # combatant takes turn
-					await combatant["Node"].turn_ended # wait for their turn to end before progressing
+					print("take turn")
+					await combatant["Node"].take_turn() # combatant takes turn
+					print("awaiting")
+					# await combatant["Node"].turn_ended # wait for their turn to end before progressing
 		
 		# round over, while loop triggers
 		round_ended.emit()
@@ -111,10 +117,16 @@ func choose_combatant(party_name:String):
 		# selection determines who goes
 		$CharacterSelect/ItemList.clear()
 		for character in combatants["PCs"]:
-			$CharacterSelect/ItemList.add_item(character["Name"],character["Sprite"],!character["Acted this round?"])
+			if not character["Acted this round?"]:
+				$CharacterSelect/ItemList.add_item(character["Name"],character["Sprite"],not character["Acted this round?"])
+			
 		$CharacterSelect.visible = true
+		print("awaiting character_selected")
 		await character_selected
 		$CharacterSelect.visible = false
+		for i in len(combatants["PCs"]):
+			if combatants["PCs"][i]["Name"] == selected_character["Name"]:
+				combatants["PCs"][i]["Acted this round?"] = true
 		return selected_character
 	
 	else: # arbitrarily pick NPC
@@ -129,7 +141,8 @@ func choose_combatant(party_name:String):
 func get_biggest_party_size():
 	var size = 0
 	for party in combatants:
-		size = max(len(party), size)
+		print("party is ", combatants[party])
+		size = max(len(combatants[party]), size)
 	return size
 
 func _on_player_character_selected(index:int):
@@ -137,5 +150,6 @@ func _on_player_character_selected(index:int):
 	for character in combatants["PCs"]:
 		if character["Name"] == char_name:
 			selected_character = character
+			print("emitting character_selected")
 			character_selected.emit()
 			return

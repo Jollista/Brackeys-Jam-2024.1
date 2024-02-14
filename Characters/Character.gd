@@ -50,6 +50,7 @@ func _on_turn_start(character_id:int):
 # player control and enemy ai goes here depending on implementation
 func take_turn():
 	# take turn
+	print("emitting turn_ended signal")
 	turn_ended.emit()
 	return
 
