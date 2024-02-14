@@ -85,11 +85,12 @@ func interpret_result(rolls:Array, mixed_threshold:int, success_threshold:int):
 	var result = FAILURE
 	
 	var i = 0
-	while result != SUCCESS:
+	while i < len(rolls) and result != SUCCESS:
 		if rolls[i] >= mixed_threshold:
 			result = MIXED_SUCCESS
 		if rolls[i] >= success_threshold:
 			result = SUCCESS
+		i += 1
 	
 	return result
 
