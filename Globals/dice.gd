@@ -37,12 +37,15 @@ func skill_check(rank:int):
 func get_check_karma():
 	# count failures in check_queue
 	var failures = 0
+	var mixed = 0
 	for i in check_queue:
 		if i == FAILURE:
 			failures += 1
+		elif i == MIXED_SUCCESS:
+			mixed += 1
 	
 	# return karma
-	return failures
+	return failures + mixed/2
 
 # update the check_karma queue with last result
 func update_karma(last_result:int, character_name=""):

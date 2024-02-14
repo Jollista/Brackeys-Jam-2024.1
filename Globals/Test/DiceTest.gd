@@ -2,7 +2,7 @@ extends Node2D
 
 func _ready():
 	var total = []
-	var rolls = 1000000
+	var rolls = 1000
 	for rank in range(1,5):
 		total = skill_check(rolls, rank)
 		print("average result of ", rolls, " rolls at rank ", rank, ": ", average_result(total))
