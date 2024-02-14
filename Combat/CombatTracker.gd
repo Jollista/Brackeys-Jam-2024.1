@@ -109,6 +109,10 @@ func _start_combat(starting_party:String):
 				var combatant = await choose_combatant(party)
 				if combatant != null: # null if no combatant in party can act
 					await combatant["Node"].take_turn() # combatant takes turn
+					
+					# after turn, if a character triggered a baton pass
+					if baton_passing != null:
+						baton_pass(baton_passing)
 		
 		# round over, while loop triggers
 		sequence_ended.emit("Acted this round?")
@@ -169,12 +173,15 @@ func _on_sequence_ended(acted:String):
 
 # on baton pass initiated, wait until end of turn and then initiate baton pass sequence
 func _on_baton_pass(character:Character):
+	baton_passing = character
+
+func baton_pass(character:Character):
 	# set acted this baton pass to true
 	set_combatant_attribute("Acted this baton pass?", true)
 	
 	# for every other combatant in PCs, prompt player for next and take their turn
-	for i in len(combatants["PCs"])-1:
-		var combatant = await choose_combatant("PCs", true)
+	for i in len(combatants[character.party])-1:
+		var combatant = await choose_combatant(character.party, true)
 		if combatant != null: # null if no combatant in party can act
 			await combatant.get("Node").take_turn() # combatant takes turn
 	
