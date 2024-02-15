@@ -13,7 +13,7 @@ const SLOW = 0.1
 @export var text_speed = NORM
 
 # reference to components
-@onready var dialogue_box = $DialogueBox
+@onready var dialogue_box = $ScrollContainer/DialogueBox
 @onready var text_container = $ScrollContainer/GridContainer
 @onready var voice = $Voice
 @onready var sound = $Sound
@@ -112,7 +112,7 @@ func next_line():
 	var newtext = RichTextLabel.new()
 	newtext.bbcode_enabled = true
 	newtext.fit_content = true
-	newtext.custom_minimum_size = Vector2(600,50)
+	newtext.custom_minimum_size = Vector2(300,50)
 	text_container.add_child(newtext)
 	chat = newtext
 	chat.text = dialogue[current_dialogue]["Text"]
@@ -227,7 +227,9 @@ func index_of_line(label:String):
 func display_choices(choices):
 	choices_list = ItemList.new()
 	choices_list.auto_height = true
-	choices_list.custom_minimum_size = Vector2(600, 0)
+	choices_list.custom_minimum_size = Vector2(300, 0)
+	choices_list.max_text_lines = 10
+	choices_list.text_overrun_behavior = TextServer.OVERRUN_TRIM_WORD_ELLIPSIS
 	choices_list.item_selected.connect(_on_choice_selected)
 	text_container.add_child(choices_list)
 	
