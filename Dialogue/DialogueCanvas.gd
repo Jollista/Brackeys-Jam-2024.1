@@ -243,7 +243,7 @@ func _on_choice_selected(index:int):
 	
 	# display selection
 	choices_list.queue_free() # remove ItemList
-	chat.text += "\n\n[i]" + selection["Text"] + "[/i]" # append selection to text
+	chat.text += "\n\n[color=gray][i]" + selection["Text"] + "[/i]" # append selection to text
 	chat.visible_characters = -1 # make visible
 
 # Remove a choice from the list of selectable options
