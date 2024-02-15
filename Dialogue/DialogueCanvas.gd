@@ -37,7 +37,7 @@ var selection
 var choice_items = []
 var choices_list
 
-var party = []
+@onready var combat_tracker = $"../CombatTracker"
 
 signal choice_selected
 signal combat_start(starting_party:String)
@@ -189,7 +189,7 @@ func next_line():
 			pass
 		else:
 			# have the character whose name is listed in check at character make the check with their skill rank
-			var character = get_pc(dialogue[current_dialogue]["Check"]["Character"])
+			var character = get_character(dialogue[current_dialogue]["Check"]["Character"])
 			var rank = character.get_skill_rank(dialogue[current_dialogue]["Check"]["Skill"])
 			result = Dice.skill_check(rank)
 		
@@ -198,7 +198,7 @@ func next_line():
 		var stress_boost = 0
 		# if it's a mixed success or failure, prompt if the player wants to spend stress
 		if result["Result"] == Dice.MIXED_SUCCESS or result["Result"] == Dice.FAILURE:
-			prompt_stress_boost()
+			stress_boost = await prompt_stress_boost()
 		
 		# continue to next dialogue based on result
 		var next = next_labels[result["Result"]-stress_boost] # next label = result - stress_boost
@@ -272,3 +272,57 @@ func _on_choice_selected(index:int):
 # Remove a choice from the list of selectable options
 func remove_choice(choice):
 	dialogue[current_dialogue]["Choices"].erase(choice)
+
+# return the node of the player character with the name character_name
+func get_character(character_name:String, party="PCs"):
+	# if party doesn't exist, return null
+	if not combat_tracker.combatants.has(party):
+		return null
+	
+	# steal characters list from combat_tracker's list of combatants
+	for i in len(combat_tracker.combatants[party]):
+		if combat_tracker.combatants[party][i]["Name"] == character_name:
+			return combat_tracker.combatants[party][i]["Node"]
+	
+	# return null if no character found of that name
+	return null
+
+# return an array of every character node in a given party
+func get_party_characters(party:String):
+	# if party doesn't exist, return null
+	if not combat_tracker.combatants.has(party):
+		return null
+	
+	# populate and return array
+	var characters = []
+	for i in len(combat_tracker.combatants[party]):
+		characters.append(combat_tracker.combatants[party][i]["Node"])
+	return characters
+
+# output a given result to the player
+func output_check_result(result):
+	chat.text += "\n\n[color=gray][i]" + str(len(result["Rolls"])) + "d6 ("
+	
+	for i in len(result["Rolls"]):
+		chat.text += str(result["Rolls"][i]) # add roll to text
+		# add comma if not last roll
+		if i < len(result["Rolls"])-1:
+			chat.text += ", "
+	
+	chat.text += ") : "
+	
+	var success_message
+	match result["Result"]:
+		Dice.SUCCESS:
+			success_message = "Success"
+		Dice.MIXED_SUCCESS:
+			success_message = "Mixed Success"
+		Dice.FAILURE:
+			success_message = "Failure"
+	
+	chat.visible_characters = -1
+
+# prompt the player to spend stress or not to boost their result by one step
+# from a failure to a mixed success; mixed success, success
+func prompt_stress_boost():
+	pass
