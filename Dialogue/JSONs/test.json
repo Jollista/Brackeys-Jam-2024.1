@@ -35,10 +35,13 @@
 	{
 		"Label":"DARKVISION",
 		"Text":"Well. Ok, I guess. Then you can sorta see things around, but I'll need a roll.",
-		"Check":"Perception",
-		"Success":"DV SUCC",
-		"Mixed Success":"DV MIX",
-		"Failure":"DV FAIL",
+		"Check":{
+			"Skill":"Perception",
+			"Character":"Party",
+			"Success":"DV SUCC",
+			"Mixed Success":"DV MIX",
+			"Failure":"DV FAIL"
+		}
 	},
 	
 	{"Label":"DV SUCC", "Text":"Yeah, ok, you can see everything. It's a white room. Whatever.", "Next":"START"},
