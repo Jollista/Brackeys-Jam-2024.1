@@ -192,7 +192,7 @@ func next_line():
 		else:
 			# have the character whose name is listed in check at character make the check with their skill rank
 			var character = get_character(dialogue[current_dialogue]["Check"]["Character"])
-			rank = character.get_skill_rank(dialogue[current_dialogue]["Check"]["Skill"])
+			rank = character.get_skill(dialogue[current_dialogue]["Check"]["Skill"])
 		
 		# make the check
 		result = Dice.skill_check(rank)
@@ -310,7 +310,7 @@ func get_party_highest_skill(skill:String, party_name="PCs"):
 	# iterate through party to find the highest rank of a certain skill
 	var max_rank = 0
 	for character in party:
-		max_rank = max(max_rank, character.get_skill_rank(skill))
+		max_rank = max(max_rank, character.get_skill(skill))
 	
 	return max_rank
 

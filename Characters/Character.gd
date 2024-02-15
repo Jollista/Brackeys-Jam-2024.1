@@ -22,6 +22,9 @@ extends CharacterBody3D
 
 @onready var combat_tracker = $"../../CombatTracker"
 
+# track skill proficiencies in a dictionary
+var skills = {}
+
 # track own id, managed by combat_tracker
 var id:float
 
@@ -70,3 +73,12 @@ func take_damage(damage:int):
 # Die function to be implemented by inherited classes
 func die():
 	pass
+
+# return the rank of a given skill tracked in skills
+func get_skill(skill_name:String):
+	# if not proficient with skill, default it to 1
+	if not skills.has(skill_name):
+		skills[skill_name] = 1
+	
+	# return skill proficiency rank
+	return skills[skill_name]
