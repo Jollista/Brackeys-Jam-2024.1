@@ -25,9 +25,6 @@ extends CharacterBody3D
 # track skill proficiencies in a dictionary
 var skills = {}
 
-# track own id, managed by combat_tracker
-var id:float
-
 # true if in baton pass sequence, used to prevent single character baton pass initiation while already in a baton pass
 var baton_passing = false
 
@@ -39,18 +36,8 @@ signal turn_ended
 func _ready():
 	set_process(false) # process should only be enabled when it is the character's turn
 	
-	combat_tracker.your_turn.connect(_on_turn_start)
-	
 	add_to_group("Combatants")
 	add_to_group(party)
-
-func _on_turn_start(character_id:int):
-	# ignore if not self
-	if character_id != id:
-		return
-	
-	# else, take turn
-	take_turn()
 
 # take turn
 # player control and enemy ai goes here depending on implementation
