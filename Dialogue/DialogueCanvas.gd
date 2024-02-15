@@ -112,7 +112,7 @@ func next_line():
 	var newtext = RichTextLabel.new()
 	newtext.bbcode_enabled = true
 	newtext.fit_content = true
-	newtext.custom_minimum_size = Vector2(200,50)
+	newtext.custom_minimum_size = Vector2(600,50)
 	text_container.add_child(newtext)
 	chat = newtext
 	chat.text = dialogue[current_dialogue]["Text"]
@@ -241,9 +241,9 @@ func _on_choice_selected(index:int):
 	selection = choice_items[index]
 	choice_selected.emit()
 	
-	for i in choices_list.item_count:
-		choices_list.set_item_disabled(i, true)
+	text_container.remove_child(choices_list)
+	chat = chat.text + "\n\n[i]" + selection["Text"] + "[/i]"
 
 # Remove a choice from the list of selectable options
 func remove_choice(choice):
-	pass
+	dialogue[current_dialogue]["Choices"].erase(choice)
