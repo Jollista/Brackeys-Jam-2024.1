@@ -26,8 +26,26 @@
 	{
 		"Label":"AREA",
 		"Text":"It's quite dark, and unfortunately you can't make out much of your surroundings.",
-		"Next":"START"
+		"Choices":[
+			{"Text":"[Give up.]", "Next":"START"},
+			{"Text":"[Actually, I have darkvision?] (Perception check)", "Next":"DARKVISION"}
+		]
 	},
+	
+	{
+		"Label":"DARKVISION",
+		"Text":"Well. Ok, I guess. Then you can sorta see things around, but I'll need a roll.",
+		"Check":"Perception",
+		"Success":"DV SUCC",
+		"Mixed Success":"DV MIX",
+		"Failure":"DV FAIL",
+	},
+	
+	{"Label":"DV SUCC", "Text":"Yeah, ok, you can see everything. It's a white room. Whatever.", "Next":"START"},
+	
+	{"Label":"DV MIX", "Text":"Well you can tell you're in a room.", "Next":"START"},
+	
+	{"Label":"DV FAIL", "Text":"You can't see anything. You lose your darkvision.", "Next":"START"},
 	
 	{
 		"Label":"END",

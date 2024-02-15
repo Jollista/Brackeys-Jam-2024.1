@@ -37,6 +37,8 @@ var selection
 var choice_items = []
 var choices_list
 
+var party = []
+
 signal choice_selected
 signal combat_start(starting_party:String)
 
@@ -157,6 +159,7 @@ func next_line():
 		display_choices(dialogue[current_dialogue]["Choices"])
 		await choice_selected
 		var choice = selection
+		remove_choice(choice)
 		
 		print("current_dialogue: ", current_dialogue)
 		if choice.has("Next"):
@@ -173,6 +176,13 @@ func next_line():
 	else:
 		# increment index
 		current_dialogue += 1
+	
+	if dialogue[current_dialogue].has("Check"):
+		# find the party member with the highest rank in dialogue[current_dialogue]["Check"]
+		# Dice.check()
+		# if it's a mixed success or failure, prompt if the player wants to spend stress
+		# continue to next dialogue based on result
+		pass
 	
 	finished = true
 	return
@@ -233,3 +243,7 @@ func _on_choice_selected(index:int):
 	
 	for i in choices_list.item_count:
 		choices_list.set_item_disabled(i, true)
+
+# Remove a choice from the list of selectable options
+func remove_choice(choice):
+	pass
