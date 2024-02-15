@@ -241,8 +241,10 @@ func _on_choice_selected(index:int):
 	selection = choice_items[index]
 	choice_selected.emit()
 	
-	choices_list.queue_free()
-	chat = chat.text + "\n\n[i]" + selection["Text"] + "[/i]"
+	# display selection
+	choices_list.queue_free() # remove ItemList
+	chat.text += "\n\n[i]" + selection["Text"] + "[/i]" # append selection to text
+	chat.visible_characters = -1 # make visible
 
 # Remove a choice from the list of selectable options
 func remove_choice(choice):
