@@ -178,26 +178,29 @@ func next_line():
 		current_dialogue += 1
 	
 	if dialogue[current_dialogue].has("Check"):
-		var result
-		var next_labels
-		next_labels.append(dialogue[current_dialogue]["Check"]["Success"])
-		next_labels.append(dialogue[current_dialogue]["Check"]["Mixed"])
-		next_labels.append(dialogue[current_dialogue]["Check"]["Failure"])
+		var rank # rank of the skill check
+		var result # result of the skill check
+		var next_labels # labels for the next dialogue to be played
+		next_labels.append(dialogue[current_dialogue]["Check"]["Success"]) # 0
+		next_labels.append(dialogue[current_dialogue]["Check"]["Mixed"]) # 1
+		next_labels.append(dialogue[current_dialogue]["Check"]["Failure"]) # 2
 		
+		# determine who makes the check
 		if dialogue[current_dialogue]["Check"]["Character"] == "Party":
 			# find the party member with the highest rank in dialogue[current_dialogue]["Check"]
-			pass
+			rank = get_party_highest_skill(dialogue[current_dialogue]["Check"]["Skill"])
 		else:
 			# have the character whose name is listed in check at character make the check with their skill rank
 			var character = get_character(dialogue[current_dialogue]["Check"]["Character"])
-			var rank = character.get_skill_rank(dialogue[current_dialogue]["Check"]["Skill"])
-			result = Dice.skill_check(rank)
+			rank = character.get_skill_rank(dialogue[current_dialogue]["Check"]["Skill"])
 		
+		# make the check
+		result = Dice.skill_check(rank)
 		output_check_result(result)
 		
 		var stress_boost = 0
 		# if it's a mixed success or failure, prompt if the player wants to spend stress
-		if result["Result"] == Dice.MIXED_SUCCESS or result["Result"] == Dice.FAILURE:
+		if ResourceTracker.stress > 0 and (result["Result"] == Dice.MIXED_SUCCESS or result["Result"] == Dice.FAILURE):
 			stress_boost = await prompt_stress_boost()
 		
 		# continue to next dialogue based on result
@@ -299,6 +302,18 @@ func get_party_characters(party:String):
 		characters.append(combat_tracker.combatants[party][i]["Node"])
 	return characters
 
+# get the highest rank of the party's skill ranks for a particular skill
+func get_party_highest_skill(skill:String, party_name="PCs"):
+	# get party
+	var party = get_party_characters(party_name)
+	
+	# iterate through party to find the highest rank of a certain skill
+	var max_rank = 0
+	for character in party:
+		max_rank = max(max_rank, character.get_skill_rank(skill))
+	
+	return max_rank
+
 # output a given result to the player
 func output_check_result(result):
 	chat.text += "\n\n[color=gray][i]" + str(len(result["Rolls"])) + "d6 ("
@@ -325,4 +340,11 @@ func output_check_result(result):
 # prompt the player to spend stress or not to boost their result by one step
 # from a failure to a mixed success; mixed success, success
 func prompt_stress_boost():
-	pass
+	var choices = [
+		{"Text":"[Accept.]"},
+		{"Text":"[Spend stress for better result.]"}
+	]
+	
+	display_choices(choices)
+	await choice_selected
+	return 0 if selection == "[Accept.]" else 1
