@@ -178,11 +178,32 @@ func next_line():
 		current_dialogue += 1
 	
 	if dialogue[current_dialogue].has("Check"):
-		# find the party member with the highest rank in dialogue[current_dialogue]["Check"]
-		# Dice.check()
+		var result
+		var next_labels
+		next_labels.append(dialogue[current_dialogue]["Check"]["Success"])
+		next_labels.append(dialogue[current_dialogue]["Check"]["Mixed"])
+		next_labels.append(dialogue[current_dialogue]["Check"]["Failure"])
+		
+		if dialogue[current_dialogue]["Check"]["Character"] == "Party":
+			# find the party member with the highest rank in dialogue[current_dialogue]["Check"]
+			pass
+		else:
+			# have the character whose name is listed in check at character make the check with their skill rank
+			var character = get_pc(dialogue[current_dialogue]["Check"]["Character"])
+			var rank = character.get_skill_rank(dialogue[current_dialogue]["Check"]["Skill"])
+			result = Dice.skill_check(rank)
+		
+		output_check_result(result)
+		
+		var stress_boost = 0
 		# if it's a mixed success or failure, prompt if the player wants to spend stress
+		if result["Result"] == Dice.MIXED_SUCCESS or result["Result"] == Dice.FAILURE:
+			prompt_stress_boost()
+		
 		# continue to next dialogue based on result
-		pass
+		var next = next_labels[result["Result"]-stress_boost] # next label = result - stress_boost
+		# get index of next (the line with the label tag matching dialogue[current_dialogue]["Next"])
+		current_dialogue = index_of_line(next)
 	
 	finished = true
 	return

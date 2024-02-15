@@ -5,6 +5,8 @@
 
 [node name="DialogueCanvas" type="CanvasLayer"]
 script = ExtResource("1_4gelv")
+dialogue_file = null
+text_speed = null
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 anchors_preset = 11
