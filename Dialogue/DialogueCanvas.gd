@@ -31,8 +31,6 @@ var current_dialogue = 0
 var active = false
 # is current line finished displaying
 var finished = true
-# skip line if blackout_screen()
-var skipping = false
 
 var selection
 var choice_items = []
@@ -58,10 +56,9 @@ func autoscroll():
 
 func _process(_delta):
 	# allows player to skip dialogue animation
-	if skipping or active and (Input.is_action_just_pressed("interact")):
+	if active and Input.is_action_just_pressed("interact") or active and finished:
 		if finished: # go to next line
 			next_line()
-			skipping = false
 		else: # skip dialogue animation and stop sounds
 			chat.visible_characters = len(chat.text)
 			voice.stop()
