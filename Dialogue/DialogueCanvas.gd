@@ -145,9 +145,10 @@ func next_line():
 	# update resources if any updates were requested
 	if dialogue[current_dialogue].has("Stress"):
 		ResourceTracker.increment_stress(dialogue[current_dialogue]["Stress"])
+		output_cost(dialogue[current_dialogue]["Stress"], "Stress")
 	if dialogue[current_dialogue].has("Resource"):
-		print("incrementing resource by ", dialogue[current_dialogue]["Resource"])
 		ResourceTracker.increment_resource_points(dialogue[current_dialogue]["Resource"])
+		output_cost(dialogue[current_dialogue]["Resource"], "Resource")
 	
 	# clear textbox
 	chat.visible_characters = 0
@@ -342,6 +343,15 @@ func get_party_highest_skill(skill:String, party_name="PCs"):
 		max_rank = max(max_rank, character.get_skill(skill))
 	
 	return max_rank
+
+# output messages for stress and resource costs
+func output_cost(cost:int, type:String):
+	chat.text += "\n\n[color=gray][i]" + type + " : "
+	
+	if cost > 0:
+		chat.text += "+"
+	
+	chat.text += str(cost)
 
 # output a given result to the player
 func output_check_result(result):
