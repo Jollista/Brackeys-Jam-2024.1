@@ -18,6 +18,7 @@ const SLOW = 0.1
 @onready var voice = $Voice
 @onready var sound = $Sound
 @onready var timer = $Delay
+@onready var scrollbar = $ScrollContainer.get_v_scroll_bar()
 var chat
 
 signal dialogue_ended
@@ -47,6 +48,13 @@ func _ready():
 	print("DialogueCanvas ready")
 	print("Timer, delay: ", timer.name, " (", timer, ")")
 	visible = false
+	
+	# set up automatic scrolling
+	scrollbar.changed.connect(autoscroll)
+
+# automatically scroll on scrollbar changed
+func autoscroll():
+	scrollbar.value = scrollbar.max_value
 
 func _process(_delta):
 	# allows player to skip dialogue animation
