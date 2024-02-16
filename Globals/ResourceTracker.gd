@@ -2,10 +2,10 @@ extends Node
 
 # Resource points inspired by inventory system in CBR+PNK Augmented
 var resource_point_max = 10
-var resource_points = resource_point_max
+var resource_points = resource_point_max/2
 
 # Stress mechanic stolen from Forged in the Dark
-var stress_max = 5
+var stress_max = 3
 var stress = stress_max
 
 signal resource_changed
