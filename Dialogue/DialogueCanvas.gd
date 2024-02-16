@@ -180,9 +180,9 @@ func next_line():
 	if dialogue[current_dialogue].has("Check"):
 		var rank # rank of the skill check
 		var result # result of the skill check
-		var next_labels # labels for the next dialogue to be played
+		var next_labels = [] # labels for the next dialogue to be played
 		next_labels.append(dialogue[current_dialogue]["Check"]["Success"]) # 0
-		next_labels.append(dialogue[current_dialogue]["Check"]["Mixed"]) # 1
+		next_labels.append(dialogue[current_dialogue]["Check"]["Mixed Success"]) # 1
 		next_labels.append(dialogue[current_dialogue]["Check"]["Failure"]) # 2
 		
 		# determine who makes the check
@@ -250,7 +250,9 @@ func index_of_line(label:String):
 
 # display selectable choices
 func display_choices(choices):
+	print("Choices : ", choices)
 	choices_list = ItemList.new()
+	choices_list.deselect_all()
 	choices_list.auto_height = true
 	choices_list.custom_minimum_size = Vector2(300, 0)
 	choices_list.max_text_lines = 10
@@ -266,12 +268,14 @@ func display_choices(choices):
 # on choice selected, update variables and disable all current dialogue options
 func _on_choice_selected(index:int):
 	selection = choice_items[index]
-	choice_selected.emit()
 	
 	# display selection
+	print("itemlist queuefree")
 	choices_list.queue_free() # remove ItemList
 	chat.text += "\n\n[color=gray][i]" + selection["Text"] + "[/i]" # append selection to text
 	chat.visible_characters = -1 # make visible
+	
+	choice_selected.emit()
 
 # Remove a choice from the list of selectable options
 func remove_choice(choice):
@@ -336,6 +340,8 @@ func output_check_result(result):
 		Dice.FAILURE:
 			success_message = "Failure"
 	
+	chat.text += success_message
+	
 	chat.visible_characters = -1
 
 # prompt the player to spend stress or not to boost their result by one step
@@ -348,4 +354,4 @@ func prompt_stress_boost():
 	
 	display_choices(choices)
 	await choice_selected
-	return 0 if selection == "[Accept.]" else 1
+	return 0 if selection["Text"] == "[Accept.]" else 1

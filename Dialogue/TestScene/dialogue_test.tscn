@@ -1,9 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvlitmsnxm043"]
+[gd_scene load_steps=6 format=3 uid="uid://dvlitmsnxm043"]
 
 [ext_resource type="Script" path="res://Dialogue/TestScene/DialogueTest.gd" id="1_804h7"]
 [ext_resource type="PackedScene" uid="uid://d25uh34udprgi" path="res://Dialogue/dialogue_canvas.tscn" id="2_g6gdl"]
+[ext_resource type="PackedScene" uid="uid://c0vtil742qc3x" path="res://Combat/combat_tracker.tscn" id="3_pclw5"]
+[ext_resource type="PackedScene" uid="uid://kffnqt5olmid" path="res://Characters/character.tscn" id="4_qafdi"]
+[ext_resource type="PackedScene" uid="uid://p2niwgqj3vof" path="res://Resources/resource_canvas.tscn" id="5_5tpwi"]
 
 [node name="DialogueTest" type="Node2D"]
 script = ExtResource("1_804h7")
 
 [node name="DialogueCanvas" parent="." instance=ExtResource("2_g6gdl")]
+
+[node name="CombatTracker" parent="." instance=ExtResource("3_pclw5")]
+
+[node name="ResourceCanvas" parent="." instance=ExtResource("5_5tpwi")]
+
+[node name="Party" type="Node" parent="."]
+
+[node name="Mage" parent="Party" instance=ExtResource("4_qafdi")]
+party = "PCs"
+
+[node name="Warrior" parent="Party" instance=ExtResource("4_qafdi")]
+party = "PCs"
+
+[node name="Thief" parent="Party" instance=ExtResource("4_qafdi")]
+party = "PCs"
