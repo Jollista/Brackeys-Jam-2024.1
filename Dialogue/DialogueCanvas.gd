@@ -203,6 +203,8 @@ func next_line():
 		if ResourceTracker.stress > 0 and (result["Result"] == Dice.MIXED_SUCCESS or result["Result"] == Dice.FAILURE):
 			stress_boost = await prompt_stress_boost()
 			ResourceTracker.set_stress(ResourceTracker.get_stress()-stress_boost)
+			if stress_boost > 0:
+				output_check_result({"Stress Boost":true, "Result":result["Result"]-stress_boost})
 		
 		# continue to next dialogue based on result
 		var next = next_labels[result["Result"]-stress_boost] # next label = result - stress_boost
@@ -321,15 +323,18 @@ func get_party_highest_skill(skill:String, party_name="PCs"):
 
 # output a given result to the player
 func output_check_result(result):
-	chat.text += "\n\n[color=gray][i]" + str(len(result["Rolls"])) + "d6 ("
-	
-	for i in len(result["Rolls"]):
-		chat.text += str(result["Rolls"][i]) # add roll to text
-		# add comma if not last roll
-		if i < len(result["Rolls"])-1:
-			chat.text += ", "
-	
-	chat.text += ") : "
+	if not result.has("Stress Boost"):
+		chat.text += "\n\n[color=gray][i]" + str(len(result["Rolls"])) + "d6 ("
+		
+		for i in len(result["Rolls"]):
+			chat.text += str(result["Rolls"][i]) # add roll to text
+			# add comma if not last roll
+			if i < len(result["Rolls"])-1:
+				chat.text += ", "
+		
+		chat.text += ") : "
+	else:
+		chat.text += "\n\n[color=gray][i] Stress Boost : "
 	
 	var success_message
 	match result["Result"]:
