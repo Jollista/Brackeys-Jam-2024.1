@@ -33,7 +33,7 @@
 	
 	{
 		"Label":"ATHLETICS",
-		"Text":"The party's warrior had been sitting on a rock while the Mage and Thief decided their next course of action. Impatiently, he charged between the both of them and kicked down the door."
+		"Text":"The party's warrior, Magnus, had been sitting on a rock while the mage and thief decided their next course of action. Impatiently, he charged between the both of them and kicked down the door."
 	}, {
 		"Check":{
 			"Skill":"Athletics",
@@ -45,15 +45,15 @@
 	},
 	{
 		"Label":"ATH SUCC",
-		"Text":"With an expert kick, the warrior managed to break the door off its hinges and send it flying into the room. The goblins inside were caught unawares, allowing the party the perfect opportunity to strike."
+		"Text":"With an expert kick, Magnus managed to break the door off its hinges and send it flying into the room. The goblins inside were caught unawares, allowing the party the perfect opportunity to strike."
 	},	{"Combat":"PCs"},
 	{
 		"Label":"ATH MIX",
-		"Text":"With an expert kick, the warrior managed to break the door off its hinges and send it flying into the room. The goblins inside were caught unawares. Unfortunately, the speed of this maneuver caught his own party by surprise as well, giving the goblins enough time to steel themselves for the battle."
+		"Text":"With an expert kick, Magnus managed to break the door off its hinges and send it flying into the room. The goblins inside were caught unawares. Unfortunately, the speed of this maneuver caught his own party by surprise as well, giving the goblins enough time to steel themselves for the battle."
 	},	{"Combat":"PCs"},
 	{
 		"Label":"ATH FAIL",
-		"Text":"With an expert kick, the warrior managed to break the door off its hinges and send it flying into the room. He chased after the door and brandished his axe. Unfortunately, moving at the speed he was, he failed to notice the goblins hiding in alcoves along the walls. The goblins were only brought to his attention when they struck first."
+		"Text":"With an expert kick, Magnus managed to break the door off its hinges and send it flying into the room. He chased after the door and brandished his axe. Unfortunately, moving at the speed he was, he failed to notice the goblins hiding in alcoves along the walls. The goblins were only brought to his attention when they struck first."
 	},	{"Combat":"Monsters"},
 	
 	
@@ -80,7 +80,7 @@
 		"Choices":[
 			{"Text":"Snuck away. The losses weren't worth the potential gain.", "Next":"SNEAK OUT"},
 			{"Text":"Attacked, of course. They had the advantage and the goblins had gold.", "Next":"SNEAK ATTACK"},
-			{"Text":"While the others decided what to do next, Mage wanted that gold. [Stealth check]", "Next":"SNEAK MAGE"}
+			{"Text":"While the others decided what to do next, Morgan wanted that gold. [Stealth check]", "Next":"SNEAK MAGE"}
 		]
 	},
 	{
@@ -134,9 +134,9 @@
 	
 	{
 		"Label":"PERCEPTION",
-		"Text":"Thief pressed his ear against the door. Time passed.
-		\"We don't have all day, you know,\" Warrior reminded, \"So if you could-\"
-		\"Shh...\" Thief interrupted."
+		"Text":"Duri pressed his ear against the door. Time passed.
+		\"We don't have all day, you know,\" Magnus reminded, \"So if you could-\"
+		\"Shh...\" Duri interrupted."
 	},	{"Check":{
 			"Skill":"Perception",
 			"Character":"Thief",
@@ -160,27 +160,27 @@
 	},{
 		"Label":"ALERT",
 		"Text":"\"They're on alert, sounds like. We could still try to sneak around them, but it'd be tough.\"
-		\"Or we could just kill them and be done with it,\" said Warrior.
-		Mage asked, \"I agree with Thief, we should sneak around them if we can. I'd rather not have to start burning through mana this early in the dungeon.\"
-		Warrior pouted, \"Hmph.\"",
+		\"Or we could just kill them and be done with it,\" said Magnus.
+		Morgan said, \"I agree with the thief, we should sneak around them if we can. I'd rather not have to start burning through mana this early in the dungeon.\"
+		Magnus pouted, \"Hmph.\"",
 		"Next":"DOOR"
 	},
 	{
 		"Label":"PER FAIL",
 		"Text":"\"Nevermind. Can't hear anything, the wood's too thick.\"
-		Warrior said, \"We oughta just open this door already. If there's anything on the other side, we can just kill it and move on.\"
-		\"Thief is right to exercise caution, Warrior,\" said Mage. \"No point in putting ourselves in harm's way unnecessarily.\"
-		\"No point in standing around here letting our torches burn out,\" Warrior grumbled. \"Torches are expensive these days, you know.\"
-		Thief rolled his eyes, \"Yes, you keep reminding us.\"",
+		Magnus said, \"We oughta just open this door already. If there's anything on the other side, we can just kill it and move on.\"
+		\"The thief is right to exercise caution, Warrior,\" said Morgan. \"No point in putting ourselves in harm's way unnecessarily.\"
+		\"No point in standing around here letting our torches burn out,\" Magnus grumbled. \"Torches are expensive these days, you know.\"
+		Duri rolled his eyes, \"Yes, you keep reminding us.\"",
 		"Next":"DOOR"
 	},
 	
 	{
 		"Label":"GAMBLING",
-		"Text":"\"Sounds like they're playing dice,\" Thief said. \"We could sneak around them.\"
-		Mage nodded in agreement, \"A good idea.\"
-		\"Well whatever we do, we better do it quick,\" Warrior grumbled. \"Don't like just standing around waiting for our torches to burn out. Torches are expensive these days, you know.\"
-		Thief rolled his eyes, \"Yes, you keep reminding us.\"",
+		"Text":"\"Sounds like they're playing dice,\" Duri said. \"We could sneak around them.\"
+		Morgan nodded in agreement, \"A good idea.\"
+		\"Well whatever we do, we better do it quick,\" Magnus grumbled. \"Don't like just standing around waiting for our torches to burn out. Torches are expensive these days, you know.\"
+		Duri rolled his eyes, \"Yes, you keep reminding us.\"",
 		"Resource":-1,
 		"Next":"DOOR AUTO STEALTH"
 	},
@@ -191,4 +191,7 @@
 		"Label":"OUT",
 		"Text":"They closed the door behind them and continued on down the darkened tunnel ahead."
 	},
+	{
+		"Label":"END"
+	}
 ]
