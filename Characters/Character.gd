@@ -38,7 +38,7 @@ signal death(character:Character)
 # DOWNED - typically happens when a PC is reduced to 0 hp. Can be roused by an ally taking the help action 
 # at which point it ends immediately. otherwise, a downed creature passes its turn. Ends at start of round 
 # when no longer at 0 hp.
-var downed = 0
+@export var downed = 0
 # SLOWED - creature moves at half speed and rolls damage at disadvantage
 var slowed = 0
 # INVISIBLE - creature cannot be seen or targeted by enemies
@@ -89,11 +89,16 @@ func _on_round_end(tag:String):
 	if tag != "Acted this round?":
 		return
 	
+	print("round over")
+	
 	condition_tick()
 
 # tick down condition timers, and end conditions if satisfied
 func condition_tick():
 	var conditions = [downed, slowed, invisible]
-	for i in len(conditions):
-		if conditions[i] > 0:
-			conditions[i] -= 1
+	if downed > 0:
+		downed -= 1
+	if slowed > 0:
+		slowed -= 1
+	if invisible > 0:
+		invisible -= 1

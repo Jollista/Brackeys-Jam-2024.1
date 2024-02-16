@@ -129,7 +129,8 @@ func choose_combatant(party_name:String, baton_pass=false):
 		# selection determines who goes
 		item_list.clear()
 		for character in combatants["PCs"]:
-			if not character[acted]:
+			print(character["Name"], " ", character["Node"].downed)
+			if not character[acted] and character["Node"].downed == 0:
 				item_list.add_item(character["Name"],character["Sprite"])
 			
 		character_select.visible = true
@@ -154,8 +155,16 @@ func get_biggest_party_size():
 	var size = 0
 	for party in combatants:
 		print("party is ", combatants[party])
-		size = max(len(combatants[party]), size)
+		size = max(num_active_characters(party), size)
 	return size
+
+# get the number of active characters in a party
+func num_active_characters(party:String):
+	var sum = 0
+	for i in len(combatants[party]):
+		if combatants[party][i]["Node"].downed == 0 and not combatants[party][i]["Acted this round?"]:
+			sum += 1
+	return sum
 
 func _on_player_character_selected(index:int):
 	var char_name = $CharacterSelect/ItemList.get_item_text(index)
@@ -176,6 +185,7 @@ func _on_sequence_ended(acted:String):
 func _on_baton_pass(character:Character):
 	baton_passing = character
 
+# start a baton pass
 func baton_pass(character:Character):
 	# set acted this baton pass to true
 	set_combatant_attribute("Acted this baton pass?", true)
