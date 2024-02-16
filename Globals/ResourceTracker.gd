@@ -47,7 +47,7 @@ func get_resource_points():
 
 # increment resource points
 func increment_resource_points(increment:int):
-	set_stress(resource_points + increment)
+	set_resource_points(resource_points + increment)
 
 
 
