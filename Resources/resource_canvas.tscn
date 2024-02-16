@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://p2niwgqj3vof"]
+
+[ext_resource type="Script" path="res://Resources/ResourceCanvas.gd" id="1_2pp2b"]
+[ext_resource type="FontFile" uid="uid://xaaa6hiu3xwb" path="res://Assets/MorrisRoman-Black.ttf" id="2_gek05"]
+
+[node name="ResourceCanvas" type="CanvasLayer"]
+script = ExtResource("1_2pp2b")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ResourceLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 164.0
+offset_bottom = 32.0
+theme_override_fonts/normal_font = ExtResource("2_gek05")
+theme_override_fonts/bold_font = ExtResource("2_gek05")
+theme_override_fonts/italics_font = ExtResource("2_gek05")
+theme_override_fonts/bold_italics_font = ExtResource("2_gek05")
+theme_override_fonts/mono_font = ExtResource("2_gek05")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
+bbcode_enabled = true
+text = "Resources: "
+fit_content = true
+
+[node name="StressLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 36.0
+offset_right = 165.0
+offset_bottom = 62.0
+theme_override_fonts/normal_font = ExtResource("2_gek05")
+theme_override_fonts/bold_font = ExtResource("2_gek05")
+theme_override_fonts/italics_font = ExtResource("2_gek05")
+theme_override_fonts/bold_italics_font = ExtResource("2_gek05")
+theme_override_fonts/mono_font = ExtResource("2_gek05")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
+bbcode_enabled = true
+text = "Stress: "
+fit_content = true
