@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d25uh34udprgi"]
 
 [ext_resource type="Script" path="res://Dialogue/DialogueCanvas.gd" id="1_4gelv"]
-[ext_resource type="Texture2D" uid="uid://bwe4pwkptpkmu" path="res://icon.svg" id="2_fq4g6"]
+[ext_resource type="Texture2D" uid="uid://dored1ehqxnit" path="res://Assets/Images/parchment.jpg" id="2_on2nb"]
 
 [node name="DialogueCanvas" type="CanvasLayer"]
 script = ExtResource("1_4gelv")
@@ -22,10 +22,10 @@ horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
 [node name="DialogueBox" type="Sprite2D" parent="ScrollContainer"]
-modulate = Color(0.513726, 0.505882, 0, 1)
-position = Vector2(181.5, 655)
-scale = Vector2(2.83594, 11.875)
-texture = ExtResource("2_fq4g6")
+modulate = Color(1, 0.847059, 0.745098, 1)
+position = Vector2(172, 300)
+scale = Vector2(0.228108, 0.258592)
+texture = ExtResource("2_on2nb")
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
 layout_mode = 2

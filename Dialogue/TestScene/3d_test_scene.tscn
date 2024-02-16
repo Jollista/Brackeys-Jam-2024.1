@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b8kbws4wruipd"]
+[gd_scene load_steps=20 format=3 uid="uid://b8kbws4wruipd"]
 
 [ext_resource type="Script" path="res://Dialogue/TestScene/3DTestScene.gd" id="1_i6sdt"]
 [ext_resource type="PackedScene" uid="uid://d25uh34udprgi" path="res://Dialogue/dialogue_canvas.tscn" id="2_e8wnm"]
@@ -9,14 +9,29 @@
 [ext_resource type="Texture2D" uid="uid://dekwhecq7012i" path="res://Assets/Images/warrior.png" id="6_tf2qr"]
 [ext_resource type="Texture2D" uid="uid://dqwfsr6n7ik2l" path="res://Assets/Images/thief.png" id="7_o5yuh"]
 [ext_resource type="Texture2D" uid="uid://ddkt08nrgqc0t" path="res://Assets/Images/mage.png" id="8_67j6s"]
+[ext_resource type="Texture2D" uid="uid://cy0i0ti6uwqsd" path="res://Assets/Images/door.png" id="10_crh61"]
+[ext_resource type="Texture2D" uid="uid://cgd4lt0keas64" path="res://Assets/Images/pillar.png" id="11_0qvy2"]
+[ext_resource type="Texture2D" uid="uid://d1lxwtciuvrmk" path="res://Assets/Images/floor.jpg" id="11_n5m0w"]
 
 [sub_resource type="Environment" id="Environment_7f3yn"]
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0105
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2er4i"]
+albedo_texture = ExtResource("10_crh61")
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_fx87q"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rpp5"]
+albedo_texture = ExtResource("11_n5m0w")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y07eq"]
+albedo_texture = ExtResource("11_0qvy2")
+
 [sub_resource type="BoxMesh" id="BoxMesh_m8drv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3a8bf"]
+albedo_texture = ExtResource("11_0qvy2")
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_i6sdt")
@@ -29,7 +44,7 @@ script = ExtResource("1_i6sdt")
 
 [node name="Party" type="Node3D" parent="."]
 
-[node name="Magnus" parent="Party" instance=ExtResource("5_ou8ca")]
+[node name="PlayerCharacter" parent="Party" instance=ExtResource("5_ou8ca")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.99608, -1.19209e-07, 1.53004)
 character_name = "Magnus"
 party = "PCs"
@@ -69,18 +84,22 @@ light_energy = 3.494
 light_size = 0.381
 spot_range = 45.948
 
+[node name="Door" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(-4.50412, -8.74227e-08, 2.32225e-14, 0, -4.37114e-08, -6.07701, 3.93762e-07, -0.999999, 2.65635e-07, 0, 5, 3.57842)
+material_override = SubResource("StandardMaterial3D_2er4i")
+mesh = SubResource("PlaneMesh_fx87q")
+
 [node name="Floor" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(6.18697, 0, 0, 0, 1, 0, 0, 0, 8.34755, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_3rpp5")
 mesh = SubResource("PlaneMesh_fx87q")
 
 [node name="LeftPillar" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(2.5, 0, 0, 0, 10.08, 0, 0, 0, 1, 5, 4.5, 4)
+material_override = SubResource("StandardMaterial3D_y07eq")
 mesh = SubResource("BoxMesh_m8drv")
 
 [node name="RightPillar" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(2.5, 0, 0, 0, 10.08, 0, 0, 0, 1, -5, 4.5, 4)
-mesh = SubResource("BoxMesh_m8drv")
-
-[node name="Door" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(8, 0, 0, 0, 10.08, 0, 0, 0, 0.5, 0, 4.5, 4)
+material_override = SubResource("StandardMaterial3D_3a8bf")
 mesh = SubResource("BoxMesh_m8drv")
