@@ -22,21 +22,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.455474, 0, 0.584465)
 character_name = "Warrior"
 party = "PCs"
 battle_sprite = ExtResource("5_dck20")
-downed = 1
 
 [node name="Thief" parent="Party" instance=ExtResource("4_ceicc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.455474, 0, 0.584465)
 character_name = "Thief"
 party = "PCs"
 battle_sprite = ExtResource("6_crikb")
-downed = 3
 
 [node name="Mage" parent="Party" instance=ExtResource("4_ceicc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.455474, 0, 0.584465)
 character_name = "Mage"
 party = "PCs"
 battle_sprite = ExtResource("7_22sb4")
-downed = 2
 
 [node name="Goblin Party" type="Node" parent="."]
 

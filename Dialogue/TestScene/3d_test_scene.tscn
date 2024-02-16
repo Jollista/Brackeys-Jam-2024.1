@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://b8kbws4wruipd"]
+
+[ext_resource type="Script" path="res://Dialogue/TestScene/3DTestScene.gd" id="1_i6sdt"]
+[ext_resource type="PackedScene" uid="uid://d25uh34udprgi" path="res://Dialogue/dialogue_canvas.tscn" id="2_e8wnm"]
+[ext_resource type="PackedScene" uid="uid://c0vtil742qc3x" path="res://Combat/combat_tracker.tscn" id="3_yghmj"]
+[ext_resource type="PackedScene" uid="uid://p2niwgqj3vof" path="res://Resources/resource_canvas.tscn" id="4_cit1a"]
+[ext_resource type="PackedScene" uid="uid://banicl6omf1ji" path="res://Characters/player_character.tscn" id="5_ou8ca"]
+[ext_resource type="PackedScene" uid="uid://kffnqt5olmid" path="res://Characters/character.tscn" id="6_cc2ct"]
+[ext_resource type="Texture2D" uid="uid://dekwhecq7012i" path="res://Assets/Images/warrior.png" id="6_tf2qr"]
+[ext_resource type="Texture2D" uid="uid://dqwfsr6n7ik2l" path="res://Assets/Images/thief.png" id="7_o5yuh"]
+[ext_resource type="Texture2D" uid="uid://ddkt08nrgqc0t" path="res://Assets/Images/mage.png" id="8_67j6s"]
+
+[sub_resource type="Environment" id="Environment_7f3yn"]
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0105
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fx87q"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_m8drv"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_i6sdt")
+
+[node name="DialogueCanvas" parent="." instance=ExtResource("2_e8wnm")]
+
+[node name="CombatTracker" parent="." instance=ExtResource("3_yghmj")]
+
+[node name="ResourceCanvas" parent="." instance=ExtResource("4_cit1a")]
+
+[node name="Party" type="Node3D" parent="."]
+
+[node name="Magnus" parent="Party" instance=ExtResource("5_ou8ca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.99608, -1.19209e-07, 1.53004)
+character_name = "Magnus"
+party = "PCs"
+battle_sprite = ExtResource("6_tf2qr")
+
+[node name="Duri" parent="Party" instance=ExtResource("5_ou8ca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92734, 1.19209e-07, 2.72916)
+character_name = "Duri"
+party = "PCs"
+battle_sprite = ExtResource("7_o5yuh")
+
+[node name="Morgan" parent="Party" instance=ExtResource("5_ou8ca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.836307, 1.19209e-07, -0.376791)
+character_name = "Morgan"
+party = "PCs"
+battle_sprite = ExtResource("8_67j6s")
+
+[node name="Monster Party" type="Node3D" parent="."]
+
+[node name="Character" parent="Monster Party" instance=ExtResource("6_cc2ct")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.640493, 0, 1.3379)
+party = "Monsters"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.866025, -0.25, 0.433013, -4.37114e-08, 0.866025, 0.5, -0.5, 0.433013, -0.75, 2.58576, 8.10816, -6.90933)
+current = true
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_7f3yn")
+
+[node name="OmniLight3D" type="SpotLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 9, 0)
+light_color = Color(1, 0.654902, 0, 1)
+light_energy = 3.494
+light_size = 0.381
+spot_range = 45.948
+
+[node name="Floor" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(6.18697, 0, 0, 0, 1, 0, 0, 0, 8.34755, 0, 0, 0)
+mesh = SubResource("PlaneMesh_fx87q")
+
+[node name="LeftPillar" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(2.5, 0, 0, 0, 10.08, 0, 0, 0, 1, 5, 4.5, 4)
+mesh = SubResource("BoxMesh_m8drv")
+
+[node name="RightPillar" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(2.5, 0, 0, 0, 10.08, 0, 0, 0, 1, -5, 4.5, 4)
+mesh = SubResource("BoxMesh_m8drv")
+
+[node name="Door" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(8, 0, 0, 0, 10.08, 0, 0, 0, 0.5, 0, 4.5, 4)
+mesh = SubResource("BoxMesh_m8drv")
