@@ -85,7 +85,7 @@
 	},
 	{
 		"Label":"STEALTH MIX",
-		"Text":"They blended with the shadows and snuck into the room. Unfortunately, goblins could see decently well in the dark, so to distract one, the thief had to toss something to create a noise somewhere he and the party weren't. Unfortunately, the only thing he could part with and short of any loose rocks around, he had to part with a shiny gold coin.",
+		"Text":"They blended with the shadows and snuck into the room. Unfortunately, goblins could see decently well in the dark, so to distract one, the thief had to toss something to create a noise somewhere he and the party weren't. Short of any loose rocks around, he had to part with a shiny gold coin.",
 		"Resource":-1,
 		"Next":"STEALTH CONV"
 	},
@@ -168,7 +168,9 @@
 	},
 	{
 		"Label":"PER FAIL",
-		"Text":"\"Nevermind. Can't hear anything, the wood's too thick.\"
+		"Text":"\"Ugh. Nothing.\"
+		\"Good,\" said Magnus, \"Since there's nothing on the other side, let's-\"
+		\"No. No. I mean I can't [i]hear[/i] anything over the sound of you talking. If you keep it up, if there's something on the other side they'll be even harder to sneak around.\"
 		Magnus said, \"We oughta just open this door already. If there's anything on the other side, we can just kill it and move on.\"
 		\"The thief is right to exercise caution, Warrior,\" said Morgan. \"No point in putting ourselves in harm's way unnecessarily.\"
 		\"No point in standing around here letting our torches burn out,\" Magnus grumbled. \"Torches are expensive these days, you know.\"
