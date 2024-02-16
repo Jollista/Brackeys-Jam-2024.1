@@ -27,6 +27,7 @@
 	{
 		"Label":"BASIC COMBAT",
 		"Text":"Opening the door, the party saw goblins on the other side. Fangs and claws as sharp as the blades they carried. A combat began.",
+		"Next":"COMBAT TRIGGER"
 	},	{"Combat":"PCs"},
 	
 	

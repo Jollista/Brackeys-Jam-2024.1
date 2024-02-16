@@ -110,15 +110,17 @@ func next_line():
 	# update vars
 	finished = false
 	
+	# if dialogue starts combat, start combat
+	if dialogue[current_dialogue].has("Combat"):
+		print("emitting start combat signal")
+		print(dialogue[current_dialogue])
+		combat_start.emit(dialogue[current_dialogue]["Combat"])
+		end_dialogue()
+	
 	# if index is out of bounds, end dialogue
 	if current_dialogue >= len(dialogue) or current_dialogue < 0 or not dialogue[current_dialogue].has("Text"):
 		end_dialogue()
 		return
-	
-	# if dialogue starts combat, start combat
-	if dialogue[current_dialogue].has("Combat"):
-		end_dialogue()
-		combat_start.emit(dialogue[current_dialogue]["Combat"])
 	
 	# update text, works with bbcode
 	print("current line:" , dialogue[current_dialogue]["Text"])

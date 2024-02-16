@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvlitmsnxm043"]
+[gd_scene load_steps=9 format=3 uid="uid://dvlitmsnxm043"]
 
 [ext_resource type="Script" path="res://Dialogue/TestScene/DialogueTest.gd" id="1_804h7"]
 [ext_resource type="PackedScene" uid="uid://d25uh34udprgi" path="res://Dialogue/dialogue_canvas.tscn" id="2_g6gdl"]
 [ext_resource type="PackedScene" uid="uid://c0vtil742qc3x" path="res://Combat/combat_tracker.tscn" id="3_pclw5"]
 [ext_resource type="PackedScene" uid="uid://kffnqt5olmid" path="res://Characters/character.tscn" id="4_qafdi"]
 [ext_resource type="PackedScene" uid="uid://p2niwgqj3vof" path="res://Resources/resource_canvas.tscn" id="5_5tpwi"]
+[ext_resource type="Texture2D" uid="uid://ddkt08nrgqc0t" path="res://Assets/Images/mage.png" id="6_30tg4"]
+[ext_resource type="Texture2D" uid="uid://dekwhecq7012i" path="res://Assets/Images/warrior.png" id="7_n86aq"]
+[ext_resource type="Texture2D" uid="uid://dqwfsr6n7ik2l" path="res://Assets/Images/thief.png" id="8_wtxvp"]
 
 [node name="DialogueTest" type="Node2D"]
 script = ExtResource("1_804h7")
@@ -20,11 +23,20 @@ script = ExtResource("1_804h7")
 [node name="Mage" parent="Party" instance=ExtResource("4_qafdi")]
 character_name = "Mage"
 party = "PCs"
+battle_sprite = ExtResource("6_30tg4")
 
 [node name="Warrior" parent="Party" instance=ExtResource("4_qafdi")]
 character_name = "Warrior"
 party = "PCs"
+battle_sprite = ExtResource("7_n86aq")
 
 [node name="Thief" parent="Party" instance=ExtResource("4_qafdi")]
 character_name = "Thief"
 party = "PCs"
+battle_sprite = ExtResource("8_wtxvp")
+
+[node name="Goblin Party" type="Node" parent="."]
+
+[node name="Character" parent="Goblin Party" instance=ExtResource("4_qafdi")]
+character_name = "Goblin"
+party = "Monsters"
