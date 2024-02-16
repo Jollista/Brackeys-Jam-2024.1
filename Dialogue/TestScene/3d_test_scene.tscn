@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b8kbws4wruipd"]
+[gd_scene load_steps=26 format=3 uid="uid://b8kbws4wruipd"]
 
 [ext_resource type="Script" path="res://Dialogue/TestScene/3DTestScene.gd" id="1_i6sdt"]
 [ext_resource type="PackedScene" uid="uid://d25uh34udprgi" path="res://Dialogue/dialogue_canvas.tscn" id="2_e8wnm"]
@@ -12,10 +12,40 @@
 [ext_resource type="Texture2D" uid="uid://cy0i0ti6uwqsd" path="res://Assets/Images/door.png" id="10_crh61"]
 [ext_resource type="Texture2D" uid="uid://cgd4lt0keas64" path="res://Assets/Images/pillar.png" id="11_0qvy2"]
 [ext_resource type="Texture2D" uid="uid://d1lxwtciuvrmk" path="res://Assets/Images/floor.jpg" id="11_n5m0w"]
+[ext_resource type="PackedScene" uid="uid://c7n025dlsb8rb" path="res://Assets/Models/Duri.glb" id="13_hfyna"]
+[ext_resource type="PackedScene" uid="uid://c02v2xlpnk1p8" path="res://Assets/Models/Magnus.glb" id="14_on7ss"]
+[ext_resource type="PackedScene" uid="uid://cpnkvqk0wncdq" path="res://Assets/Models/Morgan.glb" id="15_6tmyu"]
 
 [sub_resource type="Environment" id="Environment_7f3yn"]
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0105
+
+[sub_resource type="Animation" id="Animation_645hf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.494]
+}
 
 [sub_resource type="Animation" id="Animation_1mkfo"]
 resource_name = "swing"
@@ -44,33 +74,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [3.494, 2.961, 3.494, 3.494, 2.961, 3.494, 2.961, 3.494, 2.961, 3.494]
-}
-
-[sub_resource type="Animation" id="Animation_645hf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.5708, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:light_energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [3.494]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dsd7q"]
@@ -172,3 +175,12 @@ mesh = SubResource("BoxMesh_m8drv")
 transform = Transform3D(2.5, 0, 0, 0, 10.08, 0, 0, 0, 1, -5, 4.5, 4)
 material_override = SubResource("StandardMaterial3D_3a8bf")
 mesh = SubResource("BoxMesh_m8drv")
+
+[node name="Duri" parent="." instance=ExtResource("13_hfyna")]
+transform = Transform3D(-0.19699, 0, 0.980406, 0, 1, 0, -0.980406, 0, -0.19699, -1.66225, 0, 2.15435)
+
+[node name="Magnus" parent="." instance=ExtResource("14_on7ss")]
+transform = Transform3D(-0.557919, 0, -0.829895, 0, 1, 0, 0.829895, 0, -0.557919, 4.01272, 0, 2.39663)
+
+[node name="Morgan" parent="." instance=ExtResource("15_6tmyu")]
+transform = Transform3D(0.930341, 0, 0.366696, 0, 1, 0, -0.366696, 0, 0.930341, -1.14795, 0, -2)
