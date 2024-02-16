@@ -18,10 +18,13 @@ script = ExtResource("1_804h7")
 [node name="Party" type="Node" parent="."]
 
 [node name="Mage" parent="Party" instance=ExtResource("4_qafdi")]
+character_name = "Mage"
 party = "PCs"
 
 [node name="Warrior" parent="Party" instance=ExtResource("4_qafdi")]
+character_name = "Warrior"
 party = "PCs"
 
 [node name="Thief" parent="Party" instance=ExtResource("4_qafdi")]
+character_name = "Thief"
 party = "PCs"
