@@ -136,7 +136,8 @@
 		"Label":"PERCEPTION",
 		"Text":"Duri pressed his ear against the door. Time passed.
 		\"We don't have all day, you know,\" Magnus reminded, \"So if you could-\"
-		\"Shh...\" Duri interrupted."
+		\"Shh...\" Duri interrupted.",
+		"Resource":-1
 	},	{"Check":{
 			"Skill":"Perception",
 			"Character":"Duri",

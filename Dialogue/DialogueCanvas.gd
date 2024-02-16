@@ -146,7 +146,7 @@ func next_line():
 	if dialogue[current_dialogue].has("Stress"):
 		ResourceTracker.increment_stress(dialogue[current_dialogue]["Stress"])
 	if dialogue[current_dialogue].has("Resource"):
-		ResourceTracker.increment_stress(dialogue[current_dialogue]["Resource"])
+		ResourceTracker.increment_resource_points(dialogue[current_dialogue]["Resource"])
 	
 	# clear textbox
 	chat.visible_characters = 0
