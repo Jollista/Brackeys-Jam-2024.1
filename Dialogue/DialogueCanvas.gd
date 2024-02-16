@@ -193,7 +193,7 @@ func next_line():
 		var result # result of the skill check
 		var next_labels = [] # labels for the next dialogue to be played
 		next_labels.append(dialogue[current_dialogue]["Check"]["Success"]) # 0
-		next_labels.append(dialogue[current_dialogue]["Check"]["Mixed Success"]) # 1
+		next_labels.append(dialogue[current_dialogue]["Check"]["Mixed"]) # 1
 		next_labels.append(dialogue[current_dialogue]["Check"]["Failure"]) # 2
 		
 		# determine who makes the check

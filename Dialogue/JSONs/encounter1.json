@@ -39,7 +39,7 @@
 			"Skill":"Athletics",
 			"Character":"Warrior",
 			"Success":"ATH SUCC",
-			"Mixed Success":"ATH MIX",
+			"Mixed":"ATH MIX",
 			"Failure":"ATH FAIL"
 		}
 	},
@@ -66,7 +66,7 @@
 			"Skill":"Stealth",
 			"Character":"Party",
 			"Success":"STEALTH SUCC",
-			"Mixed Success":"STEALTH MIX",
+			"Mixed":"STEALTH MIX",
 			"Failure":"STEALTH FAIL"
 		}
 	},
@@ -110,7 +110,7 @@
 			"Skill":"Stealth",
 			"Character":"Mage",
 			"Success":"MAGESTEALTH SUCC",
-			"Mixed Success":"MAGESTEALTH MIX",
+			"Mixed":"MAGESTEALTH MIX",
 			"Failure":"MAGESTEALTH FAIL"
 		}
 	},
@@ -133,7 +133,7 @@
 	
 	
 	{
-		"Label":"Perception",
+		"Label":"PERCEPTION",
 		"Text":"Thief pressed his ear against the door. Time passed.
 		\"We don't have all day, you know,\" Warrior reminded, \"So if you could-\"
 		\"Shh...\" Thief interrupted."
@@ -141,7 +141,7 @@
 			"Skill":"Perception",
 			"Character":"Thief",
 			"Success":"PER SUCC",
-			"Mixed Succes":"PER MIX",
+			"Mixed":"PER MIX",
 			"Failure":"PER FAIL",
 		}
 	},
@@ -151,7 +151,7 @@
 		"Text":"They continued, \"I can hear something on the other side... goblins.\"",
 		"Choices":[
 			{"Text":"They were on alert.", "Next":"ALERT"},
-			{"Text":"They were shirking their duties. [Stress -1]", "Next":"GAMBLING"}
+			{"Text":"They were shirking their duties. [-1 stress]", "Next":"GAMBLING"}
 		]
 	},
 	{

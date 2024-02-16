@@ -40,7 +40,7 @@
 			"Skill":"Perception",
 			"Character":"Party",
 			"Success":"DV SUCC",
-			"Mixed Success":"DV MIX",
+			"Mixed":"DV MIX",
 			"Failure":"DV FAIL"
 		}
 	},
