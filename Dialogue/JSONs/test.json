@@ -34,7 +34,8 @@
 	
 	{
 		"Label":"DARKVISION",
-		"Text":"Well. Ok, I guess. Then you can sorta see things around, but I'll need a roll.",
+		"Text":"Well. Ok, I guess. Then you can sorta see things around, but I'll need a roll.",},
+	{
 		"Check":{
 			"Skill":"Perception",
 			"Character":"Party",
