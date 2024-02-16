@@ -20,18 +20,18 @@ script = ExtResource("1_804h7")
 
 [node name="Party" type="Node" parent="."]
 
-[node name="Mage" parent="Party" instance=ExtResource("4_qafdi")]
-character_name = "Mage"
+[node name="Morgan" parent="Party" instance=ExtResource("4_qafdi")]
+character_name = "Morgan"
 party = "PCs"
 battle_sprite = ExtResource("6_30tg4")
 
-[node name="Warrior" parent="Party" instance=ExtResource("4_qafdi")]
-character_name = "Warrior"
+[node name="Magnus" parent="Party" instance=ExtResource("4_qafdi")]
+character_name = "Magnus"
 party = "PCs"
 battle_sprite = ExtResource("7_n86aq")
 
-[node name="Thief" parent="Party" instance=ExtResource("4_qafdi")]
-character_name = "Thief"
+[node name="Duri" parent="Party" instance=ExtResource("4_qafdi")]
+character_name = "Duri"
 party = "PCs"
 battle_sprite = ExtResource("8_wtxvp")
 

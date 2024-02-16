@@ -26,8 +26,7 @@
 	
 	{
 		"Label":"BASIC COMBAT",
-		"Text":"Opening the door, the party saw goblins on the other side. Fangs and claws as sharp as the blades they carried. A combat began.",
-		"Next":"COMBAT TRIGGER"
+		"Text":"Opening the door, the party saw goblins on the other side. Fangs and claws as sharp as the blades they carried. A combat began."
 	},	{"Combat":"PCs"},
 	
 	
@@ -38,7 +37,7 @@
 	}, {
 		"Check":{
 			"Skill":"Athletics",
-			"Character":"Warrior",
+			"Character":"Magnus",
 			"Success":"ATH SUCC",
 			"Mixed":"ATH MIX",
 			"Failure":"ATH FAIL"
@@ -109,7 +108,7 @@
 		"Text":"She whispered some arcane incantation, summoning a spectral hand near the pile of gold."
 	},	{"Check":{
 			"Skill":"Stealth",
-			"Character":"Mage",
+			"Character":"Morgan",
 			"Success":"MAGESTEALTH SUCC",
 			"Mixed":"MAGESTEALTH MIX",
 			"Failure":"MAGESTEALTH FAIL"
@@ -140,7 +139,7 @@
 		\"Shh...\" Duri interrupted."
 	},	{"Check":{
 			"Skill":"Perception",
-			"Character":"Thief",
+			"Character":"Duri",
 			"Success":"PER SUCC",
 			"Mixed":"PER MIX",
 			"Failure":"PER FAIL",
