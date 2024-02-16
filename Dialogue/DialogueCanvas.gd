@@ -202,6 +202,7 @@ func next_line():
 		# if it's a mixed success or failure, prompt if the player wants to spend stress
 		if ResourceTracker.stress > 0 and (result["Result"] == Dice.MIXED_SUCCESS or result["Result"] == Dice.FAILURE):
 			stress_boost = await prompt_stress_boost()
+			ResourceTracker.set_stress(ResourceTracker.get_stress()-stress_boost)
 		
 		# continue to next dialogue based on result
 		var next = next_labels[result["Result"]-stress_boost] # next label = result - stress_boost
