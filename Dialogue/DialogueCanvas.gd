@@ -107,6 +107,11 @@ func next_line():
 		end_dialogue()
 		return
 	
+	# if dialogue starts combat, start combat
+	if dialogue[current_dialogue].has("Combat"):
+		end_dialogue()
+		combat_start.emit(dialogue[current_dialogue]["Combat"])
+	
 	# update text, works with bbcode
 	print("current line:" , dialogue[current_dialogue]["Text"])
 	var newtext = RichTextLabel.new()
