@@ -12,10 +12,14 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -363.0
+offset_top = 24.0
+offset_right = -22.0
+offset_bottom = -28.0
 grow_horizontal = 0
 grow_vertical = 2
 follow_focus = true
 horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
 
 [node name="DialogueBox" type="Sprite2D" parent="ScrollContainer"]
 modulate = Color(0.513726, 0.505882, 0, 1)
