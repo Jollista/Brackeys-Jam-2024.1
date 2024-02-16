@@ -31,13 +31,24 @@ var baton_passing = false
 signal baton_pass(character:Character)
 signal turn_ended
 
+# CONDITIONS
+# At the top of each round, each condition should tick down until it gets to 0 at which point the condition ends.
+# if the condition is at -1, it only ends if ended manually (such as by the help action)
+# DOWNED - typically happens when a PC is reduced to 0 hp. Can be roused by an ally taking the help action 
+# at which point it ends immediately. otherwise, a downed creature passes its turn. Ends at start of round 
+# when no longer at 0 hp.
+var downed = 0
+# SLOWED - creature moves at half speed and rolls damage at disadvantage
+var slowed = 0
+# INVISIBLE - creature cannot be seen or targeted by enemies
+var invisible = 0
+
 # onready, connect signals from combat_tracker to self, disable process by default
 # also add self to relevant groups based on party affiliation
 func _ready():
 	set_process(false) # process should only be enabled when it is the character's turn
 	
-	add_to_group("Combatants")
-	add_to_group(party)
+	combat_tracker.sequence_ended.connect(_on_round_end)
 
 # take turn
 # player control and enemy ai goes here depending on implementation
@@ -69,3 +80,18 @@ func get_skill(skill_name:String):
 	
 	# return skill proficiency rank
 	return skills[skill_name]
+
+# logic for end of the round
+func _on_round_end(tag:String):
+	# ignore if not round end
+	if tag != "Acted this round?":
+		return
+	
+	condition_tick()
+
+# tick down condition timers, and end conditions if satisfied
+func condition_tick():
+	var conditions = [downed, slowed, invisible]
+	for i in len(conditions):
+		if conditions[i] > 0:
+			conditions[i] -= 1
