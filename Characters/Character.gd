@@ -30,6 +30,7 @@ var baton_passing = false
 
 signal baton_pass(character:Character)
 signal turn_ended
+signal death(character:Character)
 
 # CONDITIONS
 # At the top of each round, each condition should tick down until it gets to 0 at which point the condition ends.
@@ -70,7 +71,8 @@ func take_damage(damage:int):
 
 # Die function to be implemented by inherited classes
 func die():
-	pass
+	death.emit(self)
+	queue_free()
 
 # return the rank of a given skill tracked in skills
 func get_skill(skill_name:String):

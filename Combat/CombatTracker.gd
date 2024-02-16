@@ -51,6 +51,7 @@ func _ready():
 	for party in combatants:
 		for i in len(combatants[party]):
 			combatants[party][i]["Node"].baton_pass.connect(_on_baton_pass)
+			combatants[party][i]["Node"].death.connect(_on_character_death)
 
 # Initialize array of combatants
 func initialize_combatants():
@@ -195,3 +196,13 @@ func set_combatant_attribute(attribute, value):
 		for i in len(combatants[party]):
 			if combatants[party][i].has(attribute):
 				combatants[party][i][attribute] = value
+
+# called when a character dies
+func _on_character_death(character:Character):
+	# find character
+	for party in combatants:
+		for i in len(combatants[party]):
+			if combatants[party][i]["Node"] == character:
+				# remove and return
+				combatants[party].remove_at(i)
+				return
