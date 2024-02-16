@@ -127,6 +127,12 @@ func next_line():
 			_:
 				timer.set_wait_time(NORM)
 	
+	# update resources if any updates were requested
+	if dialogue[current_dialogue].has("Stress"):
+		ResourceTracker.increment_stress(dialogue[current_dialogue]["Stress"])
+	if dialogue[current_dialogue].has("Resource"):
+		ResourceTracker.increment_stress(dialogue[current_dialogue]["Resource"])
+	
 	# clear textbox
 	chat.visible_characters = 0
 	

@@ -19,6 +19,10 @@ func set_stress(new_stress:int):
 func get_stress():
 	return stress
 
+# increment stress
+func increment_stress(increment:int):
+	set_stress(stress + increment)
+
 
 
 # set resource points to a maximum of resource_point_max
@@ -40,6 +44,10 @@ func set_resource_points(new_resource_points:int):
 
 func get_resource_points():
 	return resource_points
+
+# increment resource points
+func increment_resource_points(increment:int):
+	set_stress(resource_points + increment)
 
 
 
