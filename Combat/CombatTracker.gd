@@ -132,7 +132,11 @@ func choose_combatant(party_name:String, baton_pass=false):
 			print(character["Name"], " ", character["Node"].downed)
 			if not character[acted] and character["Node"].downed == 0:
 				item_list.add_item(character["Name"],character["Sprite"])
-			
+		
+		# return null if no characters to select
+		if item_list.item_count == 0:
+			return null
+		
 		character_select.visible = true
 		print("awaiting character_selected")
 		await character_selected

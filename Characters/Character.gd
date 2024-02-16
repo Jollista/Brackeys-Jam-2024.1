@@ -38,7 +38,7 @@ signal death(character:Character)
 # DOWNED - typically happens when a PC is reduced to 0 hp. Can be roused by an ally taking the help action 
 # at which point it ends immediately. otherwise, a downed creature passes its turn. Ends at start of round 
 # when no longer at 0 hp.
-@export var downed = 0
+var downed = 0
 # SLOWED - creature moves at half speed and rolls damage at disadvantage
 var slowed = 0
 # INVISIBLE - creature cannot be seen or targeted by enemies
