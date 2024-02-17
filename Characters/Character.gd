@@ -47,7 +47,7 @@ var invisible = 0
 # onready, connect signals from combat_tracker to self, disable process by default
 # also add self to relevant groups based on party affiliation
 func _ready():
-	set_process(false) # process should only be enabled when it is the character's turn
+	#set_process(false) # process should only be enabled when it is the character's turn
 	
 	combat_tracker.sequence_ended.connect(_on_round_end)
 
@@ -95,7 +95,6 @@ func _on_round_end(tag:String):
 
 # tick down condition timers, and end conditions if satisfied
 func condition_tick():
-	var conditions = [downed, slowed, invisible]
 	if downed > 0:
 		downed -= 1
 	if slowed > 0:

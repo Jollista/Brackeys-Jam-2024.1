@@ -3,7 +3,7 @@ class_name PlayerCharacter
 extends Character
 
 # true if is turn, else false
-var my_turn = false
+@export var my_turn = false
 
 # vars for navigation
 @onready var nav_agent:NavigationAgent3D = $"NavigationAgent3D"
@@ -22,7 +22,9 @@ func move_to_point(delta, speed):
 	var target_pos = nav_agent.get_next_path_position()
 	var direction = global_position.direction_to(target_pos)
 	face_direction(target_pos)
+	print("setting velocity")
 	velocity = direction * speed
+	print("move and sliiiiide")
 	move_and_slide()
 
 func face_direction(direction):
@@ -36,6 +38,7 @@ func _input(event):
 
 # translates mouse click to nav target position
 func set_next_position():
+	print("setting next position")
 	var camera = get_tree().get_nodes_in_group("Camera")[0]
 	var mouse_pos = get_viewport().get_mouse_position()
 	var ray_length = 100

@@ -1,7 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqs4jcuct7byu"]
+[gd_scene load_steps=14 format=3 uid="uid://dqs4jcuct7byu"]
 
 [ext_resource type="Script" path="res://Combat/Test/FollowClickMovement.gd" id="1_pog7o"]
 [ext_resource type="PackedScene" uid="uid://cpnkvqk0wncdq" path="res://Assets/Models/Morgan.glb" id="2_eo66f"]
+[ext_resource type="PackedScene" uid="uid://2llcr3lrj7hc" path="res://Characters/PCs/magnus.tscn" id="3_73ubq"]
+[ext_resource type="PackedScene" uid="uid://c0vtil742qc3x" path="res://Combat/combat_tracker.tscn" id="4_6fmjb"]
+[ext_resource type="PackedScene" uid="uid://d25uh34udprgi" path="res://Dialogue/dialogue_canvas.tscn" id="5_xmvry"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_uummi"]
 vertices = PackedVector3Array(-9.14778, 0.257907, -18.1478, -18.1478, 0.257907, -18.1478, -18.1478, 0.257907, -9.14778, -18.1478, 0.257907, 8.85222, -18.1478, 0.257907, 18.1022, -9.14778, 0.257907, 18.1022, 18.1022, 0.257907, -9.14778, 18.1022, 0.257907, -18.1478, 8.85222, 0.257907, -18.1478, 8.85222, 0.257907, 18.1022, 18.1022, 0.257907, 18.1022, 18.1022, 0.257907, 8.85222, -0.147778, 0.257907, -18.1478, -9.14778, 0.257907, -18.1478, -18.1478, 0.257907, -9.14778, -18.1478, 0.257907, -0.147778, -18.1478, 0.257907, 8.85222, -9.14778, 0.257907, 18.1022, -0.147778, 0.257907, 18.1022, 18.1022, 0.257907, -0.147778, 18.1022, 0.257907, -9.14778, 8.85222, 0.257907, -18.1478, -0.147778, 0.257907, -18.1478, -0.147778, 0.257907, 18.1022, 8.85222, 0.257907, 18.1022, 18.1022, 0.257907, 8.85222, -18.1478, 0.257907, -0.147778, -18.1478, 0.257907, 8.85222, -0.147778, 0.257907, 18.1022, 18.1022, 0.257907, 8.85222, 18.1022, 0.257907, -0.147778, -0.147778, 0.257907, -18.1478)
@@ -26,6 +29,10 @@ background_mode = 2
 sky = SubResource("Sky_eidov")
 
 [node name="CombatTest" type="Node3D"]
+
+[node name="CombatTracker" parent="." instance=ExtResource("4_6fmjb")]
+
+[node name="DialogueCanvas" parent="." instance=ExtResource("5_xmvry")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_uummi")
@@ -63,3 +70,9 @@ transform = Transform3D(1, 0, 0, 0, 0.523718, 0.851892, 0, -0.851892, 0.523718, 
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3p5ht")
+
+[node name="Party" type="Node" parent="."]
+
+[node name="Magnus" parent="Party" instance=ExtResource("3_73ubq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.51754, 1.06369, -0.218139)
+my_turn = true

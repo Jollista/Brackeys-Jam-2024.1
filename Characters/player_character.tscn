@@ -5,3 +5,11 @@
 
 [node name="PlayerCharacter" instance=ExtResource("1_t3kn8")]
 script = ExtResource("2_4kdri")
+my_turn = false
+
+[node name="MeshInstance3D" parent="." index="0"]
+visible = false
+
+[node name="NavigationAgent3D" parent="." index="2"]
+path_desired_distance = 0.1
+target_desired_distance = 0.1
