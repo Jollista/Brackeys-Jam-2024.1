@@ -24,6 +24,7 @@ path_desired_distance = 0.1
 target_desired_distance = 0.1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer"]
 anchors_preset = 9

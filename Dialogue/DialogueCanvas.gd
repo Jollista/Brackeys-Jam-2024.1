@@ -107,6 +107,11 @@ func next_line():
 	# update vars
 	finished = false
 	
+	# if dialogue changes the scene, do that
+	if dialogue[current_dialogue].has("Scene"):
+		get_tree().change_scene_to_file(dialogue[current_dialogue]["Scene"])
+		end_dialogue() # unreachable code, but whatever, right?
+	
 	# if dialogue starts combat, start combat
 	if dialogue[current_dialogue].has("Combat"):
 		print("emitting start combat signal")

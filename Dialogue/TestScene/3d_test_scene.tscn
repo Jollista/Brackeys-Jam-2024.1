@@ -99,6 +99,7 @@ albedo_texture = ExtResource("11_0qvy2")
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_i6sdt")
+dialogue_filepath = "res://Dialogue/JSONs/encounter1.json"
 
 [node name="DialogueCanvas" parent="." instance=ExtResource("2_e8wnm")]
 
