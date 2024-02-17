@@ -18,4 +18,7 @@ inventory system.
 ## Attributions
 Font is [Morris Roman](https://www.1001fonts.com/morris-roman-font.html) by [Dieter Steffmann](https://www.1001fonts.com/users/steffmann/)
 
+[Mists in the Elven Lands by elias_weber](https://pixabay.com/music/main-title-mists-in-the-elven-lands-127808/)
+
+[O Recinto Amaldiçoado by Composiia](https://pixabay.com/music/pulses-o-recinto-amaldicoado-189324/)
 Movement thanks to a [tutorial by FinePointCGI](https://www.youtube.com/watch?v=KT06pv06Q1U)
