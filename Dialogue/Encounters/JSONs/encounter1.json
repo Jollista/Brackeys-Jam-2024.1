@@ -203,10 +203,7 @@
 	
 	{
 		"Label":"OUT",
-		"Text":"They closed the door behind them and continued on down the darkened tunnel ahead."
-	},
-	{
-		"Label":"END",
+		"Text":"They closed the door behind them and continued on down the darkened tunnel ahead.",
 		"Choices":[{"Text":"[Continue.]"}]
 	}, {"Scene":"res://Dialogue/Encounters/end_scene.tscn"},
 ]

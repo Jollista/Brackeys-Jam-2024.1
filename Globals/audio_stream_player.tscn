@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c466laf4urrrx"]
 
 [ext_resource type="AudioStream" uid="uid://c3aay0f64i4yd" path="res://Assets/Music/mists-in-the-elven-lands-127808.mp3" id="1_rtg2i"]
-[ext_resource type="Script" path="res://MusicPlayer.gd" id="2_7ab2e"]
+[ext_resource type="Script" path="res://Globals/MusicPlayer.gd" id="2_7ab2e"]
 
 [node name="MusicPlayer" type="AudioStreamPlayer"]
 stream = ExtResource("1_rtg2i")
