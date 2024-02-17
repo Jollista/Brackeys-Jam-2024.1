@@ -53,11 +53,12 @@ environment = SubResource("Environment_3p5ht")
 [node name="Duri" parent="Party" instance=ExtResource("3_a235r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.04431, 0.142093, 1.07527)
 my_turn = true
+max_movement = 12.0
 
 [node name="Magnus" parent="Party" instance=ExtResource("3_73ubq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.33291, 0.142093, 2.14584)
-my_turn = true
+max_movement = 10.0
 
 [node name="Morgan" parent="Party" instance=ExtResource("3_gdwep")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.38721, 0.142093, -0.847035)
-my_turn = true
+max_movement = 8.0
