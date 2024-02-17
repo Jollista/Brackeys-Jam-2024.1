@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cy0ehhtjnt6bq"]
+[gd_scene load_steps=5 format=3 uid="uid://cy0ehhtjnt6bq"]
 
 [ext_resource type="Script" path="res://Characters/NewPlayerCharacter.gd" id="1_30j0y"]
+[ext_resource type="Texture2D" uid="uid://bwe4pwkptpkmu" path="res://icon.svg" id="2_0735j"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kh8xa"]
 
@@ -21,3 +22,46 @@ shape = SubResource("CapsuleShape3D_qbyht")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.1
 target_desired_distance = 0.1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 260.0
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="ItemList" type="ItemList" parent="CanvasLayer/ScrollContainer"]
+custom_minimum_size = Vector2(170, 622)
+layout_mode = 2
+auto_height = true
+item_count = 2
+fixed_icon_size = Vector2i(70, 70)
+item_0/text = "Help"
+item_0/icon = ExtResource("2_0735j")
+item_1/text = "Heal"
+item_1/icon = ExtResource("2_0735j")
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="HPLabel" type="RichTextLabel" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -145.0
+offset_top = 15.0
+offset_right = 22.0
+offset_bottom = 55.0
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+text = "X/X HP"
+text_direction = 2
