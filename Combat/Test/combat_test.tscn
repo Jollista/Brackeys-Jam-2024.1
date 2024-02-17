@@ -1,8 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://dqs4jcuct7byu"]
+[gd_scene load_steps=10 format=3 uid="uid://dqs4jcuct7byu"]
 
-[ext_resource type="Script" path="res://Combat/Test/FollowClickMovement.gd" id="1_pog7o"]
-[ext_resource type="PackedScene" uid="uid://cpnkvqk0wncdq" path="res://Assets/Models/Morgan.glb" id="2_eo66f"]
-[ext_resource type="PackedScene" uid="uid://2llcr3lrj7hc" path="res://Characters/PCs/magnus.tscn" id="3_73ubq"]
+[ext_resource type="PackedScene" uid="uid://c6qf8taoassp" path="res://Characters/PCs/morgan.tscn" id="3_gdwep"]
 [ext_resource type="PackedScene" uid="uid://c0vtil742qc3x" path="res://Combat/combat_tracker.tscn" id="4_6fmjb"]
 [ext_resource type="PackedScene" uid="uid://d25uh34udprgi" path="res://Dialogue/dialogue_canvas.tscn" id="5_xmvry"]
 
@@ -14,10 +12,6 @@ cell_height = 0.1
 [sub_resource type="BoxMesh" id="BoxMesh_64arx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ictwc"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_kh8xa"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qbyht"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dv4m8"]
 
@@ -46,25 +40,6 @@ mesh = SubResource("BoxMesh_64arx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_ictwc")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-script = ExtResource("1_pog7o")
-
-[node name="Morgan" parent="CharacterBody3D" instance=ExtResource("2_eo66f")]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0.0992692, 0.142093, -0.0958278)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28825, 0)
-visible = false
-mesh = SubResource("CapsuleMesh_kh8xa")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29993, 0)
-shape = SubResource("CapsuleShape3D_qbyht")
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="CharacterBody3D"]
-path_desired_distance = 0.1
-target_desired_distance = 0.1
-
 [node name="Camera3D" type="Camera3D" parent="." groups=["Camera"]]
 transform = Transform3D(1, 0, 0, 0, 0.523718, 0.851892, 0, -0.851892, 0.523718, 0, 13.2543, 13.8437)
 
@@ -73,6 +48,6 @@ environment = SubResource("Environment_3p5ht")
 
 [node name="Party" type="Node" parent="."]
 
-[node name="Magnus" parent="Party" instance=ExtResource("3_73ubq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.51754, 1.06369, -0.218139)
+[node name="Morgan" parent="Party" instance=ExtResource("3_gdwep")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.38721, 0.142093, -0.847035)
 my_turn = true

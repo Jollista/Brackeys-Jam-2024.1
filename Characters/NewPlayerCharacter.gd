@@ -1,7 +1,10 @@
-extends CharacterBody3D
+extends Character
 
+# true if is turn, else false
+@export var my_turn = false
+
+# navigation stuff
 @onready var nav_agent:NavigationAgent3D = $"NavigationAgent3D"
-
 var move_speed = 5
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,8 +18,12 @@ func _process(delta):
 
 func move_to_point(delta, speed):
 	var target_pos = nav_agent.get_next_path_position()
+	print("non-player target_pos = ", target_pos)
 	var direction = global_position.direction_to(target_pos)
 	face_direction(target_pos)
+	print("direction ", direction)
+	print("times speed ", speed)
+	print("equals velocity", direction*speed)
 	velocity = direction * speed
 	move_and_slide()
 
@@ -24,7 +31,7 @@ func face_direction(direction):
 	look_at(Vector3(direction.x, global_position.y, direction.z), Vector3.UP)
 
 func _input(event):
-	if Input.is_action_just_pressed("left_mouse"):
+	if my_turn and Input.is_action_just_pressed("left_mouse"):
 		var camera = get_tree().get_nodes_in_group("Camera")[0]
 		var mouse_pos = get_viewport().get_mouse_position()
 		var ray_length = 100

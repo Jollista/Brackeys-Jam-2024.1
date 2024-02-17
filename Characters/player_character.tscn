@@ -6,6 +6,7 @@
 [node name="PlayerCharacter" instance=ExtResource("1_t3kn8")]
 script = ExtResource("2_4kdri")
 my_turn = false
+move_speed = 5
 
 [node name="MeshInstance3D" parent="." index="0"]
 visible = false
