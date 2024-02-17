@@ -206,6 +206,7 @@ func next_line():
 		var rank # rank of the skill check
 		var result # result of the skill check
 		var next_labels = [] # labels for the next dialogue to be played
+		print()
 		next_labels.append(dialogue[current_dialogue]["Check"]["Success"]) # 0
 		next_labels.append(dialogue[current_dialogue]["Check"]["Mixed"]) # 1
 		next_labels.append(dialogue[current_dialogue]["Check"]["Failure"]) # 2

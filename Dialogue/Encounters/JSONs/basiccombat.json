@@ -1,67 +1,86 @@
 [
 	{
-		"Text":"The goblins readied their knives, but...",
-		"Choices":[
-			{"Text":"Magnus acted first.", "Next":"MAGNUS 1"},
-			{"Text":"Duri acted first.", "Next":"DURI 1"},
-			{"Text":"Morgan acted first.", "Next":"MORGAN 1"}
-		]
+		"Text":"The goblins readied their knives, but Morgan acted first.",
+		"Next":"MORGAN 2"
 	},
 	
 	
 	
 	{
-		"Label":"MAGNUS 1"
-	},
-	
-	
-	
-	{
-		"Label":"DURI 1"
-	},
-	
-	
-	
-	{
-		"Label":"MORGAN 1",
+		"Label":"MORGAN 2",
 		"Text":"She calmly adjusted her glasses, raised her staff and...",
 		"Choices":[
-			{"Text":"Cast a spell to harm her enemies. [Arcana check, resource -1]", "Next":"HARM 1"},
-			{"Text":"Struck the nearest goblin with her staff. [Brawl check]", "Next":"STAFFSMACK 1"},
+			{"Text":"Cast a spell to harm her enemies. [Arcana check, resource -1]", "Next":"HARM 2"},
+			{"Text":"Struck the nearest goblin with her staff. [Brawl check]", "Next":"STAFFSMACK 2"},
 		]
 	},
 	
 	
 	
 	{
-		"Label":"HARM 1",
+		"Label":"HARM 2",
 		"Text":"Sparks formed about her staff and coalesced into a bolt of magic, quick as lightning.",
 		"Resource":-1
-	},	{
-		"Check":"Arcana",
-		"Character":"Morgan",
-		"Success":"HARM 1 SUCC",
-		"Mixed":"HARM 1 MIX",
-		"Failure":"HARM 1 FAIL"
+	}, {
+		"Check":{
+			"Skill":"Arcana",
+			"Character":"Morgan",
+			"Success":"HARM 2 SUCC",
+			"Mixed":"HARM 2 MIX",
+			"Failure":"HARM 2 FAIL"
+		}
 	},
 	
 	{
-		"Label":"HARM 1 SUCC",
+		"Label":"HARM 2 SUCC",
 		"Text":"The blast killed the first of the goblins in an instant, leaving it half disintegrated. \"I was hoping to not have to use much mana this soon,\" Morgan commented.
 		\"Then relax,\" said Duri. \"I've got the next one.\"",
 		"Next":"MORGAN BATON PASS"
 	},
 	{
-		"Label":"HARM 1 MIX",
+		"Label":"HARM 2 MIX",
 		"Text":"The blast killed the first of the goblins in an instant, leaving it half disintegrated. \"I was hoping to not have to use much mana this soon,\" Morgan commented.
-		\"Then relax,\" said Duri. \"I've got the next one.\" Unfortunately, while they were talking they failed to account for just how fast the remaining goblin was. He charged at Duri and swung with his sword",
-		"Next":"MORGAN -> DURI INTERCEPTION 1"
+		\"Then relax,\" said Duri. \"I've got the next one.\" Unfortunately, while they were talking they failed to account for just how fast the remaining goblin was. It charged at Morgan and swung with its sword",
+		"Next":"MORGAN -> MORGAN INTERCEPTION 1"
 	},
 	{
-		"Label":"HARM 1 FAIL",
+		"Label":"HARM 2 FAIL",
 		"Text":"The blast surely would've killed the goblin in an instant, but it failed to meet its target, instead leaving the goblin's shield partly disintegrated. \"I was hoping to not have to use much mana this soon,\" Morgan commented.
-		\"Then relax,\" said Duri. \"I've got this one.\" His eyes shifted between the two goblins, sizing them up. One charged at Morgan and swung with his sword",
+		\"Then relax,\" said Duri. \"I've got this one.\" His eyes shifted between the two goblins, sizing them up. One charged at Morgan and swung with its sword",
+		"Next":"MORGAN -> MORGAN INTERCEPTION 2"
+	},
+	
+	
+	
+	{
+		"Label":"STAFFSMACK 2",
+		"Text":"Morgan rushed forward, swinging her staff with all the power she could muster."
+	}, {
+		"Check":{
+			"Skill":"Brawl",
+			"Character":"Morgan",
+			"Success":"STAFFSMACK 2 SUCC",
+			"Mixed":"STAFFSMACK 2 MIX",
+			"Failure":"STAFFSMACK 2 FAIL",
+		}
+	},
+	{
+		"Label":"STAFFSMACK 2 SUCC",
+		"Text":"There was a solid [b]crack[/b] as her staff met the goblin's skull. It fell limp on the ground. \"I've got the next one,\" Magnus said.
+		\"Not if I get to it first,\" Duri smirked.",
+		"Next":"MORGAN BATON PASS"
+	},
+	{
+		"Label":"STAFFSMACK 2 MIX",
+		"Text":"The strike slew the first of the goblins, leaving it dead on the ground. \"I was hoping not to run into any mosnters this early on,\" Morgan commented.
+		\"Relax,\" said Duri. \"I've got the next one.\" Unfortunately, while they were talking they failed to account for just how fast the remaining goblin was. It charged at Morgan and swung with its sword",
 		"Next":"MORGAN -> MORGAN INTERCEPTION 1"
+	},
+	{
+		"Label":"STAFFSMACK 2 FAIL",
+		"Text":"The swing was powerful, but the goblin was quick and easily ducked under the attack. \"Some assistance, please,\" Morgan commented.
+		\"On it!\" Magnus shouted, as the goblin raised its sword to attack Morgan.",
+		"Next":"MORGAN -> MORGAN INTERCEPTION 2"
 	},
 	
 	
@@ -77,25 +96,33 @@
 	
 	{
 		"Label":"MORGAN BATON PASS -> MAGNUS",
-		"Text":"Magnus impatiently charged at the last remaining goblin."
-	},	{
-		"Check":"Brawl",
-		"Character":"Magnus",
-		"Success":"MORGAN BATON PASS -> MAGNUS SUCC",
-		"Mixed":"MORGAN BATON PASS -> MAGNUS MIX",
-		"Failure":"MORGAN BATON PASS -> MAGNUS FAIL",
+		"Text":"Magnus swung at the last remaining goblin."
+	}, {
+		"Check":{
+			"Skill":"Brawl",
+			"Character":"Magnus",
+			"Success":"MORGAN BATON PASS -> MAGNUS SUCC",
+			"Mixed":"MORGAN BATON PASS -> MAGNUS MIX",
+			"Failure":"MORGAN BATON PASS -> MAGNUS FAIL",
+		}
 	},
 	
 	
 	
 	{
-		"Label":"MORGAN BATON PASS -> MAGNUS SUCC"
+		"Label":"MORGAN BATON PASS -> MAGNUS SUCC",
+		"Text":"He feinted with his axe only to parry with his shield and shove the goblin to the ground before then bringing down his axe upon it like an executioner.",
+		"Next":"FINISHER"
 	},
 	{
-		"Label":"MORGAN BATON PASS -> MAGNUS MIX"
+		"Label":"MORGAN BATON PASS -> MAGNUS MIX",
+		"Text":"He swung with his axe, aiming high, but was parried and countered. Resisting the injury, he managed to fell the goblin then by using his shield in his off-hand as a bludgeon. With the fight over, he began to bandage his wounds.",
+		"Next":"FINISHER"
 	},
 	{
-		"Label":"MORGAN BATON PASS -> MAGNUS FAIL"
+		"Label":"MORGAN BATON PASS -> MAGNUS FAIL",
+		"Text":"He swung with his axe, aiming high, but was parried and disarmed. The goblin then grabbed both the dwarf's arms and bashed the bridge of his nose with its skull. It was then that Duri chose to strike, emerging from the darkness, he drove his dagger into the back of the goblin's neck before it slammed into Magnus a second time. With a wicked grin he said, \"They never see it coming.\"",
+		"Next":"FINISHER"
 	},
 	
 	
@@ -103,12 +130,14 @@
 	{
 		"Label":"MORGAN BATON PASS -> DURI",
 		"Text":"Duri readied his dagger underneath his cloak and charged at the last goblin."
-	},	{
-		"Check":"Brawl",
-		"Character":"Duri",
-		"Success":"MORGAN BATON PASS -> DURI SUCC",
-		"Mixed":"MORGAN BATON PASS -> DURI MIX",
-		"Failure":"MORGAN BATON PASS -> DURI FAIL"
+	}, {
+		"Check":{
+			"Skill":"Brawl",
+			"Character":"Duri",
+			"Success":"MORGAN BATON PASS -> DURI SUCC",
+			"Mixed":"MORGAN BATON PASS -> DURI MIX",
+			"Failure":"MORGAN BATON PASS -> DURI FAIL"
+		}
 	},
 	
 	
@@ -117,23 +146,82 @@
 		"Label":"MORGAN BATON PASS -> DURI SUCC",
 		"Text":"Moving too fast for eyes to see, he disappeared, reappearing a moment later behind the goblin.
 		\"They never see it coming,\" he said with a wicked grin on his face, plunging the blade into the back of the goblin's neck.",
-		"Next":"DURI FINISHER"
+		"Next":"FINISHER"
 	},
 	{
 		"Label":"MORGAN BATON PASS -> DURI MIX",
 		"Text":"Moving too fast for eyes to see, he charged, but unfortunately for him the goblin got lucky with a swing, grazing him as he plunged the dagger into the goblin's neck. With the fight over, he began to bandage the wound.",
-		"Next":"DURI FINISHER"
+		"Next":"FINISHER"
 	},
 	{
 		"Label":"MORGAN BATON PASS -> DURI FAIL",
-		"Text":"Moving too fast for eyes to see, he charged but luck wasn't on his side as the goblin got lucky and somehow managed to block the strike. The goblin raised his sword high, about to bring it down when Magnus dove in to parry and deliver a retaliating strike! The goblin didn't last much longer after that.",
-		"Next":"MAGNUS FINISHER"
+		"Text":"Moving too fast for eyes to see, he charged but luck wasn't on his side as the goblin got lucky and somehow managed to block the strike. The goblin raised his sword high, about to bring it down when Magnus dove in to parry, \"Not on my watch!\" and deliver a retaliating strike! The goblin didn't last much longer after that.",
+		"Next":"FINISHER"
 	},
 	
 	
 	
 	{
-		"Label":"DURI FINISHER",
+		"Label":"MORGAN INTERCEPTION 1",
+		"Check":{
+			"Skill":"Brawl",
+			"Character":"Magnus",
+			"Success":"MORGAN INTERCEPTION 1 SUCC",
+			"Mixed":"MORGAN INTERCEPTION 1 MIX",
+			"Failure":"MORGAN INTERCEPTION 1 FAIL",
+		}
+	},
+	{
+		"Label":"MORGAN INTERCEPTION 1 SUCC",
+		"Text":"Magnus dove in to intercept the attack with his shield, \"Not on my watch!\" Then, he cleaved his axe into the goblin's stomach, killing it.",
+		"Next":"FINISHER"
+	},
+	{
+		"Label":"MORGAN INTERCEPTION 1 MIX",
+		"Text":"Magnus dove in to intercept the attack, \"Not on my watch!\" he cried as he barely managed to catch the blade with the crook of his axe.",
+		"Next":"MORGAN BATON PASS"
+	},
+	{
+		"Label":"MORGAN INTERCEPTION 1 FAIL",
+		"Text":"Magnus attempted to intercept the attack, but he was too far and the goblin was too quick. Morgan raised her staff slightly off parallel to deflect it, but was grazed along her shoulder in doing so. The scent of blood drove the goblins into a frenzy.",
+		"Next":"MORGAN BATON PASS"
+	},
+	
+	
+	
+	{
+		"Label":"MORGAN INTERCEPTION 2",
+	},{
+		"Check":{
+			"Skill":"Brawl",
+			"Character":"Magnus",
+			"Success":"MORGAN INTERCEPTION 2 SUCC",
+			"Mixed":"MORGAN INTERCEPTION 2 MIX",
+			"Failure":"MORGAN INTERCEPTION 2 FAIL",
+		}
+	},
+	
+	{
+		"Label":"MORGAN INTERCEPTION 2 SUCC",
+		"Text":"Magnus dove in to intercept the attack with his shield, \"Not on my watch!\" Then, he cleaved his axe into the goblin's stomach, killing it.",
+		"Next":"MORGAN BATON PASS"
+	},
+	{
+		"Label":"MORGAN INTERCEPTION 2 MIX",
+		"Text":"Magnus dove in to intercept the attack, \"Not on my watch!\" he cried as he barely managed to catch the blade with the crook of his axe.",
+		"Next":"BATON PASS 2"
+	},
+	{
+		"Label":"MORGAN INTERCEPTION 2 FAIL",
+		"Text":"Magnus attempted to intercept the attack, but he was too far and the goblin was too quick. Morgan raised her staff slightly off parallel to deflect it, but was grazed along her shoulder in doing so. The scent of blood drove the goblins into a frenzy.",
+		"Next":"BATON PASS 2 NO BACKUP"
+	},
+	
+	
+	
+	
+	{
+		"Label":"FINISHER",
 		"Text":"Duri breathed a sigh of relief, \"Well then, now that that's taken care of, shall we?\" he asked while gesturing to the darkened hall ahead of them.
 		Magnus commented, \"Hmph. Finally picking up a sense of haste, I see.\"
 		\"Is that all you think about?\"
