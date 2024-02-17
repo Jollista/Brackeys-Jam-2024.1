@@ -56,7 +56,7 @@ func autoscroll():
 
 func _process(_delta):
 	# allows player to skip dialogue animation
-	if active and Input.is_action_just_pressed("interact"):
+	if active and (Input.is_action_just_pressed("interact") or finished):
 		if finished: # go to next line
 			next_line()
 		else: # skip dialogue animation and stop sounds

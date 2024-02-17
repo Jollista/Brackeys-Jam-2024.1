@@ -26,7 +26,8 @@
 	
 	{
 		"Label":"BASIC COMBAT",
-		"Text":"Opening the door, the party saw goblins on the other side. Fangs and claws as sharp as the blades they carried. A combat began."
+		"Text":"Opening the door, the party saw goblins on the other side. Fangs and claws as sharp as the blades they carried. A combat began.",
+		"Choices":[{"Text":"[Continue.]"}]
 	},	{"Combat":"PCs"},
 	
 	
@@ -45,15 +46,18 @@
 	},
 	{
 		"Label":"ATH SUCC",
-		"Text":"With an expert kick, Magnus managed to break the door off its hinges and send it flying into the room. The goblins inside were caught unawares, allowing the party the perfect opportunity to strike."
+		"Text":"With an expert kick, Magnus managed to break the door off its hinges and send it flying into the room. The goblins inside were caught unawares, allowing the party the perfect opportunity to strike.",
+		"Choices":[{"Text":"[Continue.]"}]
 	},	{"Combat":"PCs"},
 	{
 		"Label":"ATH MIX",
-		"Text":"With an expert kick, Magnus managed to break the door off its hinges and send it flying into the room. The goblins inside were caught unawares. Unfortunately, the speed of this maneuver caught his own party by surprise as well, giving the goblins enough time to steel themselves for the battle."
+		"Text":"With an expert kick, Magnus managed to break the door off its hinges and send it flying into the room. The goblins inside were caught unawares. Unfortunately, the speed of this maneuver caught his own party by surprise as well, giving the goblins enough time to steel themselves for the battle.",
+		"Choices":[{"Text":"[Continue.]"}]
 	},	{"Combat":"PCs"},
 	{
 		"Label":"ATH FAIL",
-		"Text":"With an expert kick, Magnus managed to break the door off its hinges and send it flying into the room. He chased after the door and brandished his axe. Unfortunately, moving at the speed he was, he failed to notice the goblins hiding in alcoves along the walls. The goblins were only brought to his attention when they struck first."
+		"Text":"With an expert kick, Magnus managed to break the door off its hinges and send it flying into the room. He chased after the door and brandished his axe. Unfortunately, moving at the speed he was, he failed to notice the goblins hiding in alcoves along the walls. The goblins were only brought to his attention when they struck first.",
+		"Choices":[{"Text":"[Continue.]"}]
 	},	{"Combat":"Monsters"},
 	
 	
@@ -91,7 +95,8 @@
 	},
 	{
 		"Label":"STEALTH FAIL",
-		"Text":"They blended in with the shadows, and snuck into the room. Unfortunately, goblins could see well in the dark. They were expecting these tactics from adventurers like the party. They struck first."
+		"Text":"They blended in with the shadows, and snuck into the room. Unfortunately, goblins could see well in the dark. They were expecting these tactics from adventurers like the party. They struck first.",
+		"Choices":[{"Text":"[Continue.]"}]
 	},	{"Combat":"Monsters"},
 	
 	{
@@ -101,7 +106,8 @@
 	}, 
 	{
 		"Label":"SNEAK ATTACK",
-		"Text":"Undetected, the party took position, waited for the perfect moment... and struck."
+		"Text":"Undetected, the party took position, waited for the perfect moment... and struck.",
+		"Choices":[{"Text":"[Continue.]"}]
 	}, {"Combat":"PCs"},
 	{
 		"Label":"SNEAK MAGE",
@@ -125,10 +131,12 @@
 		"Label":"MAGESTEALTH MIX",
 		"Text":"What she lacked in stealth, she made up for in speed. She managed to steal the gold and at least ready herself for the combat that would follow in the wake of her and the party's detection.",
 		"Resource":1,
+		"Choices":[{"Text":"[Continue.]"}]
 	},	{"Combat":"PCs"},
 	{
 		"Label":"MAGESTEALTH FAIL",
 		"Text":"The goblins had keen eyes and--unfortunately for the mage--even keener ears. As soon as she muttered the incantation, the goblins noticed her and the party, attacking without a moment's hesitation.",
+		"Choices":[{"Text":"[Continue.]"}]
 	},	{"Combat":"Monsters"},
 	
 	
