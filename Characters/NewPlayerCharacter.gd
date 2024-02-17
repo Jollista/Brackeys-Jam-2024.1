@@ -6,6 +6,7 @@ extends Character
 # navigation stuff
 @onready var nav_agent:NavigationAgent3D = $"NavigationAgent3D"
 var move_speed = 5
+var start_pos:Vector3
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -14,18 +15,19 @@ func _process(delta):
 		return
 	
 	move_to_point(delta, move_speed)
-	pass
 
 func move_to_point(delta, speed):
 	var target_pos = nav_agent.get_next_path_position()
-	print("non-player target_pos = ", target_pos)
 	var direction = global_position.direction_to(target_pos)
-	face_direction(target_pos)
-	print("direction ", direction)
-	print("times speed ", speed)
-	print("equals velocity", direction*speed)
-	velocity = direction * speed
-	move_and_slide()
+	
+	if remaining_movement <= start_pos.distance_to(nav_agent.target_position):
+		# move as far as possible
+		pass
+	else:
+		remaining_movement -= start_pos.distance_to(nav_agent.target_position)
+		face_direction(target_pos)
+		velocity = direction * speed
+		move_and_slide()
 
 func face_direction(direction):
 	look_at(Vector3(direction.x, global_position.y, direction.z), Vector3.UP)
@@ -46,3 +48,4 @@ func _input(event):
 		
 		if result.has("position"):
 			nav_agent.target_position = result.position
+			start_pos = position

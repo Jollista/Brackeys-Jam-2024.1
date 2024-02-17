@@ -60,3 +60,4 @@ my_turn = true
 
 [node name="Morgan" parent="Party" instance=ExtResource("3_gdwep")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.38721, 0.142093, -0.847035)
+my_turn = true
