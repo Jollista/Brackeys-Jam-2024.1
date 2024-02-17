@@ -12,7 +12,9 @@ max_movement = 30.0
 party = "PCs"
 battle_sprite = ExtResource("2_c8r5p")
 skills = {
-"Athletics": 3
+"Athletics": 2,
+"Body": 3,
+"Brawl": 2
 }
 
 [node name="Magnus" parent="." index="3" instance=ExtResource("3_tl0he")]

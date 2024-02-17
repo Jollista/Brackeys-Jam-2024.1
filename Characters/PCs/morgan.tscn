@@ -12,7 +12,7 @@ party = "PCs"
 battle_sprite = ExtResource("2_w1xq5")
 skills = {
 "Arcana": 3,
-"Perception": 2
+"History": 2
 }
 
 [node name="Morgan" parent="." index="3" instance=ExtResource("2_xfgf0")]

@@ -27,8 +27,7 @@
 		"Text":"She calmly adjusted her glasses, raised her staff and...",
 		"Choices":[
 			{"Text":"Cast a spell to harm her enemies. [Arcana check, resource -1]", "Next":"HARM 1"},
-			{"Text":"Cast a spell to shield her allies. [Arcana check, resource -1]", "Next":"WARD 1"},
-			{"Text":"Struck the nearest goblin. [Brawl check]", "Next":"STAFFSMACK 1"},
+			{"Text":"Struck the nearest goblin with her staff. [Brawl check]", "Next":"STAFFSMACK 1"},
 		]
 	},
 	
@@ -49,6 +48,102 @@
 	{
 		"Label":"HARM 1 SUCC",
 		"Text":"The blast killed the first of the goblins in an instant, leaving it half disintegrated. \"I was hoping to not have to use much mana this soon,\" Morgan commented.
-		\"Then relax,\" said Duri. \"I've got the next one.\""
-	}
+		\"Then relax,\" said Duri. \"I've got the next one.\"",
+		"Next":"MORGAN BATON PASS"
+	},
+	{
+		"Label":"HARM 1 MIX",
+		"Text":"The blast killed the first of the goblins in an instant, leaving it half disintegrated. \"I was hoping to not have to use much mana this soon,\" Morgan commented.
+		\"Then relax,\" said Duri. \"I've got the next one.\" Unfortunately, while they were talking they failed to account for just how fast the remaining goblin was. He charged at Duri and swung with his sword",
+		"Next":"MORGAN -> DURI INTERCEPTION 1"
+	},
+	{
+		"Label":"HARM 1 FAIL",
+		"Text":"The blast surely would've killed the goblin in an instant, but it failed to meet its target, instead leaving the goblin's shield partly disintegrated. \"I was hoping to not have to use much mana this soon,\" Morgan commented.
+		\"Then relax,\" said Duri. \"I've got this one.\" His eyes shifted between the two goblins, sizing them up. One charged at Morgan and swung with his sword",
+		"Next":"MORGAN -> MORGAN INTERCEPTION 1"
+	},
+	
+	
+	
+	{
+		"Label":"MORGAN BATON PASS",
+		"Text":"One goblin remained.",
+		"Choices":[
+			{"Text":"Magnus acted next.", "Next":"MORGAN BATON PASS -> MAGNUS"},
+			{"Text":"Duri acted next.", "Next":"MORGAN BATON PASS -> DURI"},
+		]
+	},
+	
+	{
+		"Label":"MORGAN BATON PASS -> MAGNUS",
+		"Text":"Magnus impatiently charged at the last remaining goblin."
+	},	{
+		"Check":"Brawl",
+		"Character":"Magnus",
+		"Success":"MORGAN BATON PASS -> MAGNUS SUCC",
+		"Mixed":"MORGAN BATON PASS -> MAGNUS MIX",
+		"Failure":"MORGAN BATON PASS -> MAGNUS FAIL",
+	},
+	
+	
+	
+	{
+		"Label":"MORGAN BATON PASS -> MAGNUS SUCC"
+	},
+	{
+		"Label":"MORGAN BATON PASS -> MAGNUS MIX"
+	},
+	{
+		"Label":"MORGAN BATON PASS -> MAGNUS FAIL"
+	},
+	
+	
+	
+	{
+		"Label":"MORGAN BATON PASS -> DURI",
+		"Text":"Duri readied his dagger underneath his cloak and charged at the last goblin."
+	},	{
+		"Check":"Brawl",
+		"Character":"Duri",
+		"Success":"MORGAN BATON PASS -> DURI SUCC",
+		"Mixed":"MORGAN BATON PASS -> DURI MIX",
+		"Failure":"MORGAN BATON PASS -> DURI FAIL"
+	},
+	
+	
+	
+	{
+		"Label":"MORGAN BATON PASS -> DURI SUCC",
+		"Text":"Moving too fast for eyes to see, he disappeared, reappearing a moment later behind the goblin.
+		\"They never see it coming,\" he said with a wicked grin on his face, plunging the blade into the back of the goblin's neck.",
+		"Next":"DURI FINISHER"
+	},
+	{
+		"Label":"MORGAN BATON PASS -> DURI MIX",
+		"Text":"Moving too fast for eyes to see, he charged, but unfortunately for him the goblin got lucky with a swing, grazing him as he plunged the dagger into the goblin's neck. With the fight over, he began to bandage the wound.",
+		"Next":"DURI FINISHER"
+	},
+	{
+		"Label":"MORGAN BATON PASS -> DURI FAIL",
+		"Text":"Moving too fast for eyes to see, he charged but luck wasn't on his side as the goblin got lucky and somehow managed to block the strike. The goblin raised his sword high, about to bring it down when Magnus dove in to parry and deliver a retaliating strike! The goblin didn't last much longer after that.",
+		"Next":"MAGNUS FINISHER"
+	},
+	
+	
+	
+	{
+		"Label":"DURI FINISHER",
+		"Text":"Duri breathed a sigh of relief, \"Well then, now that that's taken care of, shall we?\" he asked while gesturing to the darkened hall ahead of them.
+		Magnus commented, \"Hmph. Finally picking up a sense of haste, I see.\"
+		\"Is that all you think about?\"
+		\"Haste saves torches, and torches-\"
+		Duri interrupted, \"Are very expensive these days, yes we know.\"
+		Morgan said, \"Please, save your squabbles for after we've exited this place.\" And all together, the three of them walked down the hall toward the next door...",
+		"Next":"END"
+	},
+	
+	
+	
+	{"Label":"END", "Scene":""}
 ]
