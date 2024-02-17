@@ -91,6 +91,9 @@ func _on_round_end(tag:String):
 	
 	print("round over")
 	
+	# reset movement
+	remaining_movement = max_movement
+	# count down conditions
 	condition_tick()
 
 # tick down condition timers, and end conditions if satisfied
