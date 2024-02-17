@@ -4,11 +4,6 @@ extends CharacterBody3D
 
 var move_speed = 5
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# don't process anything else if navigation is finished
@@ -21,9 +16,12 @@ func _process(delta):
 func move_to_point(delta, speed):
 	var target_pos = nav_agent.get_next_path_position()
 	var direction = global_position.direction_to(target_pos)
-	
+	face_direction(target_pos)
 	velocity = direction * speed
 	move_and_slide()
+
+func face_direction(direction):
+	look_at(Vector3(direction.x, global_position.y, direction.z), Vector3.UP)
 
 func _input(event):
 	if Input.is_action_just_pressed("left_mouse"):

@@ -17,3 +17,5 @@ inventory system.
 
 ## Attributions
 Font is [Morris Roman](https://www.1001fonts.com/morris-roman-font.html) by [Dieter Steffmann](https://www.1001fonts.com/users/steffmann/)
+
+Movement thanks to a [tutorial by FinePointCGI](https://www.youtube.com/watch?v=KT06pv06Q1U)
