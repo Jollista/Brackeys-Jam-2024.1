@@ -1,9 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6qf8taoassp"]
+[gd_scene load_steps=4 format=3 uid="uid://c6qf8taoassp"]
 
 [ext_resource type="PackedScene" uid="uid://cy0ehhtjnt6bq" path="res://Characters/new_player_character.tscn" id="1_gkn5s"]
+[ext_resource type="Texture2D" uid="uid://ddkt08nrgqc0t" path="res://Assets/Images/mage.png" id="2_w1xq5"]
 [ext_resource type="PackedScene" uid="uid://cpnkvqk0wncdq" path="res://Assets/Models/Morgan.glb" id="2_xfgf0"]
 
 [node name="Morgan" instance=ExtResource("1_gkn5s")]
+character_name = "Morgan"
+max_health = 15
+max_movement = 25.0
+party = "PCs"
+battle_sprite = ExtResource("2_w1xq5")
+skills = {
+"Arcana": 3,
+"Perception": 2
+}
 
 [node name="Morgan" parent="." index="3" instance=ExtResource("2_xfgf0")]
 transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, -0.00374341, 0.269707, -0.0456545)

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmy3drbnfowny"]
+
+[ext_resource type="PackedScene" uid="uid://cy0ehhtjnt6bq" path="res://Characters/new_player_character.tscn" id="1_4nlxt"]
+[ext_resource type="Texture2D" uid="uid://dqwfsr6n7ik2l" path="res://Assets/Images/thief.png" id="2_m1tq7"]
+[ext_resource type="PackedScene" uid="uid://c7n025dlsb8rb" path="res://Assets/Models/Duri.glb" id="3_aolgs"]
+
+[node name="Duri" instance=ExtResource("1_4nlxt")]
+character_name = "Duri"
+max_health = 18
+armor = 3
+max_movement = 35.0
+party = "PCs"
+battle_sprite = ExtResource("2_m1tq7")
+skills = {
+"Perception": 2
+}
+
+[node name="Duri" parent="." index="3" instance=ExtResource("3_aolgs")]
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0, 0.292397, 0.0848894)

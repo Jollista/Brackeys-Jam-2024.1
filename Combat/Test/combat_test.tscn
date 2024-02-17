@@ -1,5 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqs4jcuct7byu"]
+[gd_scene load_steps=12 format=3 uid="uid://dqs4jcuct7byu"]
 
+[ext_resource type="PackedScene" uid="uid://br087xn2nsdy8" path="res://Characters/PCs/magnus.tscn" id="3_73ubq"]
+[ext_resource type="PackedScene" uid="uid://dmy3drbnfowny" path="res://Characters/PCs/duri.tscn" id="3_a235r"]
 [ext_resource type="PackedScene" uid="uid://c6qf8taoassp" path="res://Characters/PCs/morgan.tscn" id="3_gdwep"]
 [ext_resource type="PackedScene" uid="uid://c0vtil742qc3x" path="res://Combat/combat_tracker.tscn" id="4_6fmjb"]
 [ext_resource type="PackedScene" uid="uid://d25uh34udprgi" path="res://Dialogue/dialogue_canvas.tscn" id="5_xmvry"]
@@ -48,6 +50,13 @@ environment = SubResource("Environment_3p5ht")
 
 [node name="Party" type="Node" parent="."]
 
+[node name="Duri" parent="Party" instance=ExtResource("3_a235r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.04431, 0.142093, 1.07527)
+my_turn = true
+
+[node name="Magnus" parent="Party" instance=ExtResource("3_73ubq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.33291, 0.142093, 2.14584)
+my_turn = true
+
 [node name="Morgan" parent="Party" instance=ExtResource("3_gdwep")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.38721, 0.142093, -0.847035)
-my_turn = true

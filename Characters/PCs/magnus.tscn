@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://br087xn2nsdy8"]
+
+[ext_resource type="PackedScene" uid="uid://cy0ehhtjnt6bq" path="res://Characters/new_player_character.tscn" id="1_eu6i4"]
+[ext_resource type="Texture2D" uid="uid://dekwhecq7012i" path="res://Assets/Images/warrior.png" id="2_c8r5p"]
+[ext_resource type="PackedScene" uid="uid://c02v2xlpnk1p8" path="res://Assets/Models/Magnus.glb" id="3_tl0he"]
+
+[node name="Magnus" instance=ExtResource("1_eu6i4")]
+character_name = "Magnus"
+max_health = 20
+armor = 5
+max_movement = 30.0
+party = "PCs"
+battle_sprite = ExtResource("2_c8r5p")
+skills = {
+"Athletics": 3
+}
+
+[node name="Magnus" parent="." index="3" instance=ExtResource("3_tl0he")]
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, -0.0280358, 0.2641, 0.107226)

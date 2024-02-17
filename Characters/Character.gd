@@ -23,7 +23,7 @@ extends CharacterBody3D
 @onready var combat_tracker = $"../../CombatTracker"
 
 # track skill proficiencies in a dictionary
-var skills = {}
+@export var skills = {}
 
 # true if in baton pass sequence, used to prevent single character baton pass initiation while already in a baton pass
 var baton_passing = false
