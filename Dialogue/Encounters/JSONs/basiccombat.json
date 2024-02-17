@@ -232,8 +232,8 @@
 			"Skill":"Brawl",
 			"Character":"Duri",
 			"Success":"MORGAN BATON PASS -> DURI SUCC",
-			"Success":"MORGAN BATON PASS -> DURI MIX",
-			"Success":"BACKUP",
+			"Mixed":"MORGAN BATON PASS -> DURI MIX",
+			"Failure":"BACKUP",
 		}
 	},
 	
@@ -249,8 +249,8 @@
 			"Skill":"Brawl",
 			"Character":"Duri",
 			"Success":"MORGAN BATON PASS -> DURI SUCC",
-			"Success":"MORGAN BATON PASS -> DURI MIX",
-			"Success":"NO BACKUP",
+			"Mixed":"MORGAN BATON PASS -> DURI MIX",
+			"Failure":"NO BACKUP",
 		}
 	},
 	
@@ -284,16 +284,19 @@
 		\"Haste saves torches, and torches-\"
 		Duri interrupted, \"Are very expensive these days, yes we know.\"
 		Morgan said, \"Please, save your squabbles for after we've exited this place.\" And all together, the three of them walked down the hall toward the next door...",
-		"Next":"END"
+		"Choices":[{"Text":"[Continue.]", "Next":"END"}],
 	},
 	
 	{
 		"Label":"BAD FINISHER",
 		"Text":"Their fate remains unknown.",
-		"Next":"END"
+		"Choices":[{"Text":"[Continue.]", "Next":"END"}],
 	},
 	
 	
 	
-	{"Label":"END", "Scene":"res://Dialogue/Encounters/end_scene.tscn"}
+	{
+		"Label":"END",
+		"Scene":"res://Dialogue/Encounters/end_scene.tscn"
+	}
 ]
