@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqs4jcuct7byu"]
+[gd_scene load_steps=10 format=3 uid="uid://dqs4jcuct7byu"]
+
+[ext_resource type="Script" path="res://Combat/Test/FollowClickMovement.gd" id="1_pog7o"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_uummi"]
 vertices = PackedVector3Array(-9.14778, 0.257907, -18.1478, -18.1478, 0.257907, -18.1478, -18.1478, 0.257907, -9.14778, -18.1478, 0.257907, 8.85222, -18.1478, 0.257907, 18.1022, -9.14778, 0.257907, 18.1022, 18.1022, 0.257907, -9.14778, 18.1022, 0.257907, -18.1478, 8.85222, 0.257907, -18.1478, 8.85222, 0.257907, 18.1022, 18.1022, 0.257907, 18.1022, 18.1022, 0.257907, 8.85222, -0.147778, 0.257907, -18.1478, -9.14778, 0.257907, -18.1478, -18.1478, 0.257907, -9.14778, -18.1478, 0.257907, -0.147778, -18.1478, 0.257907, 8.85222, -9.14778, 0.257907, 18.1022, -0.147778, 0.257907, 18.1022, 18.1022, 0.257907, -0.147778, 18.1022, 0.257907, -9.14778, 8.85222, 0.257907, -18.1478, -0.147778, 0.257907, -18.1478, -0.147778, 0.257907, 18.1022, 8.85222, 0.257907, 18.1022, 18.1022, 0.257907, 8.85222, -18.1478, 0.257907, -0.147778, -18.1478, 0.257907, 8.85222, -0.147778, 0.257907, 18.1022, 18.1022, 0.257907, 8.85222, 18.1022, 0.257907, -0.147778, -0.147778, 0.257907, -18.1478)
@@ -12,6 +14,15 @@ cell_height = 0.1
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kh8xa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qbyht"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dv4m8"]
+
+[sub_resource type="Sky" id="Sky_eidov"]
+sky_material = SubResource("ProceduralSkyMaterial_dv4m8")
+
+[sub_resource type="Environment" id="Environment_3p5ht"]
+background_mode = 2
+sky = SubResource("Sky_eidov")
 
 [node name="CombatTest" type="Node3D"]
 
@@ -28,6 +39,7 @@ mesh = SubResource("BoxMesh_64arx")
 shape = SubResource("BoxShape3D_ictwc")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_pog7o")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28825, 0)
@@ -41,5 +53,8 @@ shape = SubResource("CapsuleShape3D_qbyht")
 path_desired_distance = 0.1
 target_desired_distance = 0.1
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." groups=["Camera"]]
 transform = Transform3D(1, 0, 0, 0, 0.523718, 0.851892, 0, -0.851892, 0.523718, 0, 13.2543, 13.8437)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3p5ht")
