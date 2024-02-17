@@ -1,0 +1,188 @@
+[gd_scene load_steps=26 format=3 uid="uid://cgkqaty7uivbt"]
+
+[ext_resource type="Script" path="res://Dialogue/Encounters/Encounter.gd" id="1_p71ah"]
+[ext_resource type="PackedScene" uid="uid://d25uh34udprgi" path="res://Dialogue/dialogue_canvas.tscn" id="2_1qvh2"]
+[ext_resource type="PackedScene" uid="uid://c0vtil742qc3x" path="res://Combat/combat_tracker.tscn" id="3_sbfcs"]
+[ext_resource type="PackedScene" uid="uid://p2niwgqj3vof" path="res://Resources/resource_canvas.tscn" id="4_1ru0q"]
+[ext_resource type="PackedScene" uid="uid://br087xn2nsdy8" path="res://Characters/PCs/magnus.tscn" id="5_533bn"]
+[ext_resource type="PackedScene" uid="uid://dmy3drbnfowny" path="res://Characters/PCs/duri.tscn" id="6_kt81b"]
+[ext_resource type="PackedScene" uid="uid://c6qf8taoassp" path="res://Characters/PCs/morgan.tscn" id="7_hnwmm"]
+[ext_resource type="PackedScene" uid="uid://kffnqt5olmid" path="res://Characters/character.tscn" id="8_vw1xl"]
+[ext_resource type="Texture2D" uid="uid://cy0i0ti6uwqsd" path="res://Assets/Images/door.png" id="9_cci6n"]
+[ext_resource type="Texture2D" uid="uid://d1lxwtciuvrmk" path="res://Assets/Images/floor.jpg" id="10_dt3xo"]
+[ext_resource type="Texture2D" uid="uid://cgd4lt0keas64" path="res://Assets/Images/pillar.png" id="11_0hlkc"]
+[ext_resource type="PackedScene" uid="uid://c7n025dlsb8rb" path="res://Assets/Models/Duri.glb" id="12_qbhfn"]
+[ext_resource type="PackedScene" uid="uid://c02v2xlpnk1p8" path="res://Assets/Models/Magnus.glb" id="13_upjim"]
+[ext_resource type="PackedScene" uid="uid://cpnkvqk0wncdq" path="res://Assets/Models/Morgan.glb" id="14_43huu"]
+[ext_resource type="PackedScene" uid="uid://b181mq08fxqg6" path="res://Assets/Models/Goblin.glb" id="15_s6mma"]
+
+[sub_resource type="Environment" id="Environment_oan7e"]
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0105
+
+[sub_resource type="Animation" id="Animation_645hf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.494]
+}
+
+[sub_resource type="Animation" id="Animation_1mkfo"]
+resource_name = "swing"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(-1.22173, 0, 0), Vector3(-1.91986, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6, 2, 2.5, 3.3, 4, 4.2, 4.4, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [3.494, 2.961, 3.494, 3.494, 2.961, 3.494, 2.961, 3.494, 2.961, 3.494]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dsd7q"]
+_data = {
+"RESET": SubResource("Animation_645hf"),
+"swing": SubResource("Animation_1mkfo")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3olng"]
+albedo_texture = ExtResource("9_cci6n")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ivm3n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b12u1"]
+albedo_texture = ExtResource("10_dt3xo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3o0mu"]
+albedo_texture = ExtResource("11_0hlkc")
+
+[sub_resource type="BoxMesh" id="BoxMesh_b1h7p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rcs4p"]
+albedo_texture = ExtResource("11_0hlkc")
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_p71ah")
+dialogue_filepath = "res://Dialogue/Encounters/JSONs/test.json"
+
+[node name="DialogueCanvas" parent="." instance=ExtResource("2_1qvh2")]
+
+[node name="CombatTracker" parent="." instance=ExtResource("3_sbfcs")]
+
+[node name="ResourceCanvas" parent="." instance=ExtResource("4_1ru0q")]
+
+[node name="Party" type="Node3D" parent="."]
+visible = false
+
+[node name="Magnus" parent="Party" instance=ExtResource("5_533bn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.526835, 0, 14.5028)
+
+[node name="Duri" parent="Party" instance=ExtResource("6_kt81b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86738, 0, 24.8564)
+
+[node name="Morgan" parent="Party" instance=ExtResource("7_hnwmm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.477, 0, 13.765)
+
+[node name="Monster Party" type="Node3D" parent="."]
+visible = false
+
+[node name="Character" parent="Monster Party" instance=ExtResource("8_vw1xl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.640493, 0, 12.027)
+party = "Monsters"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.866025, -0.25, 0.433013, -4.37114e-08, 0.866025, 0.5, -0.5, 0.433013, -0.75, 2.58576, 8.10816, -6.90933)
+current = true
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_oan7e")
+
+[node name="Spotlight" type="SpotLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 9, 0)
+light_color = Color(1, 0.654902, 0, 1)
+light_energy = 3.494
+light_size = 0.381
+spot_range = 45.948
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Environment/Spotlight"]
+autoplay = "swing"
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_dsd7q")
+}
+
+[node name="Door" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(-4.50412, -8.74227e-08, 2.32225e-14, 0, -4.37114e-08, -6.07701, 3.93762e-07, -0.999999, 2.65635e-07, 0, 5, -7.643)
+material_override = SubResource("StandardMaterial3D_3olng")
+mesh = SubResource("PlaneMesh_ivm3n")
+
+[node name="Floor" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(6.18697, 0, 0, 0, 1, 0, 0, 0, 8.34755, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_b12u1")
+mesh = SubResource("PlaneMesh_ivm3n")
+
+[node name="LeftPillar" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(2.5, 0, 0, 0, 10.08, 0, 0, 0, 1, 5, 4.5, -7.22142)
+material_override = SubResource("StandardMaterial3D_3o0mu")
+mesh = SubResource("BoxMesh_b1h7p")
+
+[node name="RightPillar" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(2.5, 0, 0, 0, 10.08, 0, 0, 0, 1, -5, 4.5, -7.22142)
+material_override = SubResource("StandardMaterial3D_rcs4p")
+mesh = SubResource("BoxMesh_b1h7p")
+
+[node name="Guys" type="Node" parent="."]
+
+[node name="Duri" parent="Guys" instance=ExtResource("12_qbhfn")]
+transform = Transform3D(0.462244, 0, 0.886753, 0, 1, 0, -0.886753, 0, 0.462244, -1.66225, 0, 1.14701)
+
+[node name="Magnus" parent="Guys" instance=ExtResource("13_upjim")]
+transform = Transform3D(0.954031, 0, -0.299707, 0, 1, 0, 0.299707, 0, 0.954031, 2.10231, 0, -3.16999)
+
+[node name="Morgan" parent="Guys" instance=ExtResource("14_43huu")]
+transform = Transform3D(0.896169, 0, 0.443712, 0, 1, 0, -0.443712, 0, 0.896169, -2.51046, 0, -3.39138)
+
+[node name="Goblin" parent="Guys" instance=ExtResource("15_s6mma")]
+transform = Transform3D(-0.953748, 0, -0.300606, 0, 1, 0, 0.300606, 0, -0.953748, 2.60243, 0, 5.93695)
+
+[node name="Goblin2" parent="Guys" instance=ExtResource("15_s6mma")]
+transform = Transform3D(-0.979729, 0, 0.200326, 0, 1, 0, -0.200326, 0, -0.979729, -1.57413, 0, 5.32324)

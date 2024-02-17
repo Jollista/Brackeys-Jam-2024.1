@@ -1,0 +1,54 @@
+[
+	{
+		"Text":"The goblins readied their knives, but...",
+		"Choices":[
+			{"Text":"Magnus acted first.", "Next":"MAGNUS 1"},
+			{"Text":"Duri acted first.", "Next":"DURI 1"},
+			{"Text":"Morgan acted first.", "Next":"MORGAN 1"}
+		]
+	},
+	
+	
+	
+	{
+		"Label":"MAGNUS 1"
+	},
+	
+	
+	
+	{
+		"Label":"DURI 1"
+	},
+	
+	
+	
+	{
+		"Label":"MORGAN 1",
+		"Text":"She calmly adjusted her glasses, raised her staff and...",
+		"Choices":[
+			{"Text":"Cast a spell to harm her enemies. [Arcana check, resource -1]", "Next":"HARM 1"},
+			{"Text":"Cast a spell to shield her allies. [Arcana check, resource -1]", "Next":"WARD 1"},
+			{"Text":"Struck the nearest goblin. [Brawl check]", "Next":"STAFFSMACK 1"},
+		]
+	},
+	
+	
+	
+	{
+		"Label":"HARM 1",
+		"Text":"Sparks formed about her staff and coalesced into a bolt of magic, quick as lightning.",
+		"Resource":-1
+	},	{
+		"Check":"Arcana",
+		"Character":"Morgan",
+		"Success":"HARM 1 SUCC",
+		"Mixed":"HARM 1 MIX",
+		"Failure":"HARM 1 FAIL"
+	},
+	
+	{
+		"Label":"HARM 1 SUCC",
+		"Text":"The blast killed the first of the goblins in an instant, leaving it half disintegrated. \"I was hoping to not have to use much mana this soon,\" Morgan commented.
+		\"Then relax,\" said Duri. \"I've got the next one.\""
+	}
+]

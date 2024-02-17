@@ -28,7 +28,7 @@
 		"Label":"BASIC COMBAT",
 		"Text":"Opening the door, the party saw goblins on the other side. Fangs and claws as sharp as the blades they carried. A combat began.",
 		"Choices":[{"Text":"[Continue.]"}]
-	},	{"Combat":"PCs"},
+	},	{"Scene":"res://Dialogue/Encounters/encounter2test.tscn"},
 	
 	
 	

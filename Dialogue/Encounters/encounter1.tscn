@@ -1,19 +1,19 @@
 [gd_scene load_steps=25 format=3 uid="uid://b8kbws4wruipd"]
 
-[ext_resource type="Script" path="res://Dialogue/TestScene/3DTestScene.gd" id="1_i6sdt"]
-[ext_resource type="PackedScene" uid="uid://d25uh34udprgi" path="res://Dialogue/dialogue_canvas.tscn" id="2_e8wnm"]
-[ext_resource type="PackedScene" uid="uid://c0vtil742qc3x" path="res://Combat/combat_tracker.tscn" id="3_yghmj"]
-[ext_resource type="PackedScene" uid="uid://p2niwgqj3vof" path="res://Resources/resource_canvas.tscn" id="4_cit1a"]
-[ext_resource type="PackedScene" uid="uid://br087xn2nsdy8" path="res://Characters/PCs/magnus.tscn" id="5_xweam"]
-[ext_resource type="PackedScene" uid="uid://dmy3drbnfowny" path="res://Characters/PCs/duri.tscn" id="6_1rhi8"]
-[ext_resource type="PackedScene" uid="uid://kffnqt5olmid" path="res://Characters/character.tscn" id="6_cc2ct"]
-[ext_resource type="PackedScene" uid="uid://c6qf8taoassp" path="res://Characters/PCs/morgan.tscn" id="7_5duvp"]
-[ext_resource type="Texture2D" uid="uid://cy0i0ti6uwqsd" path="res://Assets/Images/door.png" id="10_crh61"]
-[ext_resource type="Texture2D" uid="uid://cgd4lt0keas64" path="res://Assets/Images/pillar.png" id="11_0qvy2"]
-[ext_resource type="Texture2D" uid="uid://d1lxwtciuvrmk" path="res://Assets/Images/floor.jpg" id="11_n5m0w"]
-[ext_resource type="PackedScene" uid="uid://c7n025dlsb8rb" path="res://Assets/Models/Duri.glb" id="13_hfyna"]
-[ext_resource type="PackedScene" uid="uid://c02v2xlpnk1p8" path="res://Assets/Models/Magnus.glb" id="14_on7ss"]
-[ext_resource type="PackedScene" uid="uid://cpnkvqk0wncdq" path="res://Assets/Models/Morgan.glb" id="15_6tmyu"]
+[ext_resource type="Script" path="res://Dialogue/Encounters/Encounter.gd" id="1_klfw7"]
+[ext_resource type="PackedScene" uid="uid://d25uh34udprgi" path="res://Dialogue/dialogue_canvas.tscn" id="2_rse3e"]
+[ext_resource type="PackedScene" uid="uid://c0vtil742qc3x" path="res://Combat/combat_tracker.tscn" id="3_vrsjs"]
+[ext_resource type="PackedScene" uid="uid://p2niwgqj3vof" path="res://Resources/resource_canvas.tscn" id="4_ami6l"]
+[ext_resource type="PackedScene" uid="uid://br087xn2nsdy8" path="res://Characters/PCs/magnus.tscn" id="5_3ac5c"]
+[ext_resource type="PackedScene" uid="uid://dmy3drbnfowny" path="res://Characters/PCs/duri.tscn" id="6_g6hvh"]
+[ext_resource type="PackedScene" uid="uid://c6qf8taoassp" path="res://Characters/PCs/morgan.tscn" id="7_0sexs"]
+[ext_resource type="PackedScene" uid="uid://kffnqt5olmid" path="res://Characters/character.tscn" id="8_t2nih"]
+[ext_resource type="Texture2D" uid="uid://cy0i0ti6uwqsd" path="res://Assets/Images/door.png" id="9_56x3g"]
+[ext_resource type="Texture2D" uid="uid://d1lxwtciuvrmk" path="res://Assets/Images/floor.jpg" id="10_bi3fe"]
+[ext_resource type="Texture2D" uid="uid://cgd4lt0keas64" path="res://Assets/Images/pillar.png" id="11_0qpm4"]
+[ext_resource type="PackedScene" uid="uid://c7n025dlsb8rb" path="res://Assets/Models/Duri.glb" id="12_eseih"]
+[ext_resource type="PackedScene" uid="uid://c02v2xlpnk1p8" path="res://Assets/Models/Magnus.glb" id="13_g40e5"]
+[ext_resource type="PackedScene" uid="uid://cpnkvqk0wncdq" path="res://Assets/Models/Morgan.glb" id="14_is8pt"]
 
 [sub_resource type="Environment" id="Environment_7f3yn"]
 volumetric_fog_enabled = true
@@ -82,45 +82,45 @@ _data = {
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2er4i"]
-albedo_texture = ExtResource("10_crh61")
+albedo_texture = ExtResource("9_56x3g")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_fx87q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rpp5"]
-albedo_texture = ExtResource("11_n5m0w")
+albedo_texture = ExtResource("10_bi3fe")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y07eq"]
-albedo_texture = ExtResource("11_0qvy2")
+albedo_texture = ExtResource("11_0qpm4")
 
 [sub_resource type="BoxMesh" id="BoxMesh_m8drv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3a8bf"]
-albedo_texture = ExtResource("11_0qvy2")
+albedo_texture = ExtResource("11_0qpm4")
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_i6sdt")
-dialogue_filepath = "res://Dialogue/JSONs/encounter1.json"
+script = ExtResource("1_klfw7")
+dialogue_filepath = "res://Dialogue/Encounters/JSONs/encounter1.json"
 
-[node name="DialogueCanvas" parent="." instance=ExtResource("2_e8wnm")]
+[node name="DialogueCanvas" parent="." instance=ExtResource("2_rse3e")]
 
-[node name="CombatTracker" parent="." instance=ExtResource("3_yghmj")]
+[node name="CombatTracker" parent="." instance=ExtResource("3_vrsjs")]
 
-[node name="ResourceCanvas" parent="." instance=ExtResource("4_cit1a")]
+[node name="ResourceCanvas" parent="." instance=ExtResource("4_ami6l")]
 
 [node name="Party" type="Node3D" parent="."]
 
-[node name="Magnus" parent="Party" instance=ExtResource("5_xweam")]
+[node name="Magnus" parent="Party" instance=ExtResource("5_3ac5c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.526835, 0, 14.5028)
 
-[node name="Duri" parent="Party" instance=ExtResource("6_1rhi8")]
+[node name="Duri" parent="Party" instance=ExtResource("6_g6hvh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86738, 0, 24.8564)
 
-[node name="Morgan" parent="Party" instance=ExtResource("7_5duvp")]
+[node name="Morgan" parent="Party" instance=ExtResource("7_0sexs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.477, 0, 13.765)
 
 [node name="Monster Party" type="Node3D" parent="."]
 
-[node name="Character" parent="Monster Party" instance=ExtResource("6_cc2ct")]
+[node name="Character" parent="Monster Party" instance=ExtResource("8_t2nih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.640493, 0, 12.027)
 party = "Monsters"
 
@@ -167,11 +167,11 @@ transform = Transform3D(2.5, 0, 0, 0, 10.08, 0, 0, 0, 1, -5, 4.5, 4)
 material_override = SubResource("StandardMaterial3D_3a8bf")
 mesh = SubResource("BoxMesh_m8drv")
 
-[node name="Duri" parent="." instance=ExtResource("13_hfyna")]
+[node name="Duri" parent="." instance=ExtResource("12_eseih")]
 transform = Transform3D(-0.19699, 0, 0.980406, 0, 1, 0, -0.980406, 0, -0.19699, -1.66225, 0, 2.15435)
 
-[node name="Magnus" parent="." instance=ExtResource("14_on7ss")]
+[node name="Magnus" parent="." instance=ExtResource("13_g40e5")]
 transform = Transform3D(-0.557919, 0, -0.829895, 0, 1, 0, 0.829895, 0, -0.557919, 4.01272, 0, 2.39663)
 
-[node name="Morgan" parent="." instance=ExtResource("15_6tmyu")]
+[node name="Morgan" parent="." instance=ExtResource("14_is8pt")]
 transform = Transform3D(0.930341, 0, 0.366696, 0, 1, 0, -0.366696, 0, 0.930341, -1.14795, 0, -2)
