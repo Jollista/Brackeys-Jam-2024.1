@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://c3aay0f64i4yd" path="res://Assets/Music/mists-in-the-elven-lands-127808.mp3" id="15_w2lwq"]
 
 [sub_resource type="Environment" id="Environment_7f3yn"]
+background_mode = 1
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0105
 

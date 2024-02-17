@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://chk7pwckxqijk" path="res://Assets/Music/o-recinto-amaldicoado-189324.mp3" id="16_0uu1q"]
 
 [sub_resource type="Environment" id="Environment_oan7e"]
+background_mode = 1
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0105
 
