@@ -9,3 +9,5 @@ script = ExtResource("1_i4kcg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_d271j")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
