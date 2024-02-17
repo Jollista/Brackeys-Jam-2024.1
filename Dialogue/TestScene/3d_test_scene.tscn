@@ -1,14 +1,13 @@
-[gd_scene load_steps=26 format=3 uid="uid://b8kbws4wruipd"]
+[gd_scene load_steps=25 format=3 uid="uid://b8kbws4wruipd"]
 
 [ext_resource type="Script" path="res://Dialogue/TestScene/3DTestScene.gd" id="1_i6sdt"]
 [ext_resource type="PackedScene" uid="uid://d25uh34udprgi" path="res://Dialogue/dialogue_canvas.tscn" id="2_e8wnm"]
 [ext_resource type="PackedScene" uid="uid://c0vtil742qc3x" path="res://Combat/combat_tracker.tscn" id="3_yghmj"]
 [ext_resource type="PackedScene" uid="uid://p2niwgqj3vof" path="res://Resources/resource_canvas.tscn" id="4_cit1a"]
-[ext_resource type="PackedScene" uid="uid://banicl6omf1ji" path="res://Characters/player_character.tscn" id="5_ou8ca"]
+[ext_resource type="PackedScene" uid="uid://br087xn2nsdy8" path="res://Characters/PCs/magnus.tscn" id="5_xweam"]
+[ext_resource type="PackedScene" uid="uid://dmy3drbnfowny" path="res://Characters/PCs/duri.tscn" id="6_1rhi8"]
 [ext_resource type="PackedScene" uid="uid://kffnqt5olmid" path="res://Characters/character.tscn" id="6_cc2ct"]
-[ext_resource type="Texture2D" uid="uid://dekwhecq7012i" path="res://Assets/Images/warrior.png" id="6_tf2qr"]
-[ext_resource type="Texture2D" uid="uid://dqwfsr6n7ik2l" path="res://Assets/Images/thief.png" id="7_o5yuh"]
-[ext_resource type="Texture2D" uid="uid://ddkt08nrgqc0t" path="res://Assets/Images/mage.png" id="8_67j6s"]
+[ext_resource type="PackedScene" uid="uid://c6qf8taoassp" path="res://Characters/PCs/morgan.tscn" id="7_5duvp"]
 [ext_resource type="Texture2D" uid="uid://cy0i0ti6uwqsd" path="res://Assets/Images/door.png" id="10_crh61"]
 [ext_resource type="Texture2D" uid="uid://cgd4lt0keas64" path="res://Assets/Images/pillar.png" id="11_0qvy2"]
 [ext_resource type="Texture2D" uid="uid://d1lxwtciuvrmk" path="res://Assets/Images/floor.jpg" id="11_n5m0w"]
@@ -109,28 +108,19 @@ script = ExtResource("1_i6sdt")
 
 [node name="Party" type="Node3D" parent="."]
 
-[node name="PlayerCharacter" parent="Party" instance=ExtResource("5_ou8ca")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.99608, -1.19209e-07, 1.53004)
-character_name = "Magnus"
-party = "PCs"
-battle_sprite = ExtResource("6_tf2qr")
+[node name="Magnus" parent="Party" instance=ExtResource("5_xweam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.526835, 0, 14.5028)
 
-[node name="Duri" parent="Party" instance=ExtResource("5_ou8ca")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92734, 1.19209e-07, 2.72916)
-character_name = "Duri"
-party = "PCs"
-battle_sprite = ExtResource("7_o5yuh")
+[node name="Duri" parent="Party" instance=ExtResource("6_1rhi8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86738, 0, 24.8564)
 
-[node name="Morgan" parent="Party" instance=ExtResource("5_ou8ca")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.836307, 1.19209e-07, -0.376791)
-character_name = "Morgan"
-party = "PCs"
-battle_sprite = ExtResource("8_67j6s")
+[node name="Morgan" parent="Party" instance=ExtResource("7_5duvp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.477, 0, 13.765)
 
 [node name="Monster Party" type="Node3D" parent="."]
 
 [node name="Character" parent="Monster Party" instance=ExtResource("6_cc2ct")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.640493, 0, 1.3379)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.640493, 0, 12.027)
 party = "Monsters"
 
 [node name="Camera3D" type="Camera3D" parent="."]
