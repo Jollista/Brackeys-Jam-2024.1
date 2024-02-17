@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cgkqaty7uivbt"]
+[gd_scene load_steps=27 format=3 uid="uid://cgkqaty7uivbt"]
 
 [ext_resource type="Script" path="res://Dialogue/Encounters/Encounter.gd" id="1_p71ah"]
 [ext_resource type="PackedScene" uid="uid://d25uh34udprgi" path="res://Dialogue/dialogue_canvas.tscn" id="2_1qvh2"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c02v2xlpnk1p8" path="res://Assets/Models/Magnus.glb" id="13_upjim"]
 [ext_resource type="PackedScene" uid="uid://cpnkvqk0wncdq" path="res://Assets/Models/Morgan.glb" id="14_43huu"]
 [ext_resource type="PackedScene" uid="uid://b181mq08fxqg6" path="res://Assets/Models/Goblin.glb" id="15_s6mma"]
+[ext_resource type="AudioStream" uid="uid://chk7pwckxqijk" path="res://Assets/Music/o-recinto-amaldicoado-189324.mp3" id="16_0uu1q"]
 
 [sub_resource type="Environment" id="Environment_oan7e"]
 volumetric_fog_enabled = true
@@ -101,6 +102,7 @@ albedo_texture = ExtResource("11_0hlkc")
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_p71ah")
 dialogue_filepath = "res://Dialogue/Encounters/JSONs/basiccombat.json"
+theme = ExtResource("16_0uu1q")
 
 [node name="DialogueCanvas" parent="." instance=ExtResource("2_1qvh2")]
 
@@ -186,3 +188,7 @@ transform = Transform3D(-0.953748, 0, -0.300606, 0, 1, 0, 0.300606, 0, -0.953748
 
 [node name="Goblin2" parent="Guys" instance=ExtResource("15_s6mma")]
 transform = Transform3D(-0.979729, 0, 0.200326, 0, 1, 0, -0.200326, 0, -0.979729, -1.57413, 0, 5.32324)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_0uu1q")
+autoplay = true

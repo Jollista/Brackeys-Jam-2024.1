@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 
 Dice="*res://Globals/Dice.gd"
 ResourceTracker="*res://Globals/ResourceTracker.gd"
+GlobalMusicPlayer="*res://Globals/audio_stream_player.tscn"
 
 [display]
 

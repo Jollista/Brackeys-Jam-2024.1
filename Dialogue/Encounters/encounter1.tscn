@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b8kbws4wruipd"]
+[gd_scene load_steps=26 format=3 uid="uid://b8kbws4wruipd"]
 
 [ext_resource type="Script" path="res://Dialogue/Encounters/Encounter.gd" id="1_klfw7"]
 [ext_resource type="PackedScene" uid="uid://d25uh34udprgi" path="res://Dialogue/dialogue_canvas.tscn" id="2_rse3e"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c7n025dlsb8rb" path="res://Assets/Models/Duri.glb" id="12_eseih"]
 [ext_resource type="PackedScene" uid="uid://c02v2xlpnk1p8" path="res://Assets/Models/Magnus.glb" id="13_g40e5"]
 [ext_resource type="PackedScene" uid="uid://cpnkvqk0wncdq" path="res://Assets/Models/Morgan.glb" id="14_is8pt"]
+[ext_resource type="AudioStream" uid="uid://c3aay0f64i4yd" path="res://Assets/Music/mists-in-the-elven-lands-127808.mp3" id="15_w2lwq"]
 
 [sub_resource type="Environment" id="Environment_7f3yn"]
 volumetric_fog_enabled = true
@@ -100,6 +101,7 @@ albedo_texture = ExtResource("11_0qpm4")
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_klfw7")
 dialogue_filepath = "res://Dialogue/Encounters/JSONs/encounter1.json"
+theme = ExtResource("15_w2lwq")
 
 [node name="DialogueCanvas" parent="." instance=ExtResource("2_rse3e")]
 
